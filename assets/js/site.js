@@ -381,3 +381,14 @@
   b.addEventListener('click',function(){var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'})});
   upd();
 })();
+
+/* Industries menu: "Segments" opens the two segment panels (hover or click) */
+(function(){
+  var dd=document.getElementById('dd-industries');if(!dd)return;
+  var t=dd.querySelector('.dd-segtrig');if(!t)return;
+  var fine=window.matchMedia('(hover:hover)');
+  function set(o){dd.classList.toggle('seg-open',o);t.setAttribute('aria-expanded',o?'true':'false')}
+  t.addEventListener('click',function(){set(!dd.classList.contains('seg-open'))});
+  t.addEventListener('mouseenter',function(){if(fine.matches)set(true)});
+  new MutationObserver(function(){if(!dd.classList.contains('is-open'))set(false)}).observe(dd,{attributes:true,attributeFilter:['class']});
+})();
