@@ -63,9 +63,28 @@
 .ab-who__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,96px);align-items:center;position:relative}
 .ab-who h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.06;margin-bottom:.5em}
 .ab-who .lead{font-size:clamp(1.15rem,1.7vw,1.4rem);color:var(--navy);line-height:1.55}
-.ab-who .lead::first-letter{font-family:var(--font-display);font-weight:800;float:left;font-size:4.2rem;line-height:.8;padding:6px 12px 0 0;color:var(--gold-ink)}
+.ab-who .lead{padding-left:22px;border-left:3px solid var(--gold)}
+.ab-who h2 em{font-style:normal;position:relative;white-space:nowrap;color:var(--gold-ink)}
+.ab-who h2 em::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.14em;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease) .5s}
+.ab-who .reveal.is-in h2 em::after{transform:scaleX(1)}
+.ab-who__card{position:relative;padding:22px 22px 24px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);box-shadow:0 18px 36px -26px rgba(7,20,38,.45);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.ab-who__card:hover{transform:translateY(-6px);box-shadow:0 26px 44px -24px rgba(7,20,38,.5)}
+.ab-who__card .ico{display:grid;place-items:center;width:46px;height:46px;margin-bottom:14px;color:var(--gold-ink);background:rgba(200,164,93,.14);border:1px solid rgba(200,164,93,.55)}
+.ab-who__card .ico svg{width:24px;height:24px}
+.ab-who__card small{display:block;font-family:var(--font-display);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:8px}
+.ab-who__card p{margin:0;padding:0;border:0;font-size:.98rem}
+.ab-who__seal{position:absolute;z-index:3;right:-14px;bottom:62px;width:120px;height:120px;border-radius:50%;background:var(--navy-deep);color:var(--gold);box-shadow:0 18px 34px -12px rgba(7,20,38,.6)}
+.ab-who__seal svg{position:absolute;inset:0;width:100%;height:100%;animation:abSpin 22s linear infinite}
+.ab-who__seal text{font-family:var(--font-display);font-size:9.4px;font-weight:700;letter-spacing:.22em;fill:currentColor;text-transform:uppercase}
+.ab-who__seal::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 0 8px rgba(200,164,93,.2)}
+.ab-who__quote{overflow:hidden}
+.ab-who__quote::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease) .6s}
+.ab-who .reveal.is-in .ab-who__quote::after{transform:scaleX(1)}
+.ab-who__media .frame{transition:transform .25s ease-out;transform-style:preserve-3d;will-change:transform}
+@media (max-width:900px){.ab-who__seal{right:-4px;bottom:40px;width:92px;height:92px}.ab-who__seal text{font-size:11px}}
+@media (prefers-reduced-motion:reduce){.ab-who__seal svg{animation:none}.ab-who h2 em::after,.ab-who__quote::after{transition:none;transform:scaleX(1)}.ab-who__card{transition:none}}
 .ab-who__cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:26px}
-.ab-who__cols p{margin:0;padding-top:16px;border-top:2px solid var(--gold)}
+.ab-who__cols{align-items:stretch}
 .ab-who__quote{margin-top:30px;padding:22px 26px;background:var(--navy);color:var(--white);font-family:var(--font-display);font-size:clamp(1.1rem,1.8vw,1.4rem);line-height:1.35;position:relative}
 .ab-who__quote::before{content:"\201C";position:absolute;left:14px;top:-4px;font-size:4rem;line-height:1;color:var(--gold)}
 .ab-who__quote span{display:block;padding-left:30px}
@@ -130,6 +149,161 @@
   .ab-team .cap-row:nth-child(even) .cap-row__visual::before{inset:22px -22px -22px 22px}
 }
 @media (prefers-reduced-motion:reduce){.ab-team .cap-row__visual img{transition:none}}
+/* Motion: next-section cues, back to top, progress */
+.ab-progress{position:fixed;left:0;top:0;right:0;height:3px;z-index:120;pointer-events:none}
+.ab-progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#8A6A2B,var(--gold),#E4CA8C);transform:scaleX(0);transform-origin:left}
+.ab-top{position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);z-index:110;width:52px;height:52px;display:grid;place-items:center;border:0;border-radius:50%;background:var(--navy-deep);color:var(--gold);cursor:pointer;box-shadow:0 14px 30px -10px rgba(7,20,38,.7);opacity:0;visibility:hidden;transform:translateY(24px) scale(.8);transition:opacity .35s var(--ease),transform .35s var(--ease),visibility .35s,background .25s}
+.ab-top.is-on{opacity:1;visibility:visible;transform:none}
+.ab-top:hover{background:var(--gold);color:var(--navy-deep)}
+.ab-top:hover .ab-top__arrow{animation:abUp .7s var(--ease) infinite}
+.ab-top:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.ab-top__ring{position:absolute;inset:2px;width:calc(100% - 4px);height:calc(100% - 4px)}
+.ab-top__arrow{width:20px;height:20px;position:relative}
+@keyframes abUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+/* staggered rise-in for grouped items */
+.js .reveal.is-in .ab-pillar,.js .reveal.is-in .ab-who__traits span,.js .reveal.is-in .ab-vm__card,.js .reveal.is-in .ab-merge{animation:abRise .8s var(--ease) backwards}
+.js .reveal.is-in .ab-pillar:nth-child(2),.js .reveal.is-in .ab-who__traits span:nth-child(2),.js .reveal.is-in .ab-vm__card:nth-of-type(2){animation-delay:.15s}
+.js .reveal.is-in .ab-pillar:nth-child(3),.js .reveal.is-in .ab-who__traits span:nth-child(3){animation-delay:.3s}
+.js .reveal.is-in .ab-who__traits span:nth-child(4){animation-delay:.45s}
+@keyframes abRise{from{opacity:0;transform:translateY(26px)}}
+@media (prefers-reduced-motion:reduce){
+  .ab-top{transition:none}
+  .js .reveal.is-in .ab-pillar,.js .reveal.is-in .ab-who__traits span,.js .reveal.is-in .ab-vm__card,.js .reveal.is-in .ab-merge{animation:none!important}
+}
+/* Next-section flight cue */
+/* Who we are: organised layout */
+.ab-who__grid{align-items:center}
+.ab-who__quote{margin-top:28px}
+.ab-who__cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);margin-top:clamp(44px,6vw,80px)}
+.ab-who__card{display:grid;grid-template-columns:auto 1fr;column-gap:22px;align-items:start;padding:clamp(24px,2.8vw,36px)}
+.ab-who__card .ico{grid-row:1 / span 2;width:60px;height:60px;margin:0}
+.ab-who__card .ico svg{width:30px;height:30px}
+.ab-who__card small{display:flex;align-items:center;gap:12px;margin:0 0 10px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:.74rem}
+.ab-who__card small b{font-weight:800;font-size:1.5rem;line-height:1;letter-spacing:0;color:transparent;-webkit-text-stroke:1px var(--gold-ink)}
+.ab-who__card p{grid-column:2;font-size:1.02rem;line-height:1.65}
+.ab-who__traits{margin-top:clamp(20px,3vw,32px)}
+@media (max-width:900px){.ab-who__cols{grid-template-columns:1fr}.ab-who__card{grid-template-columns:1fr}.ab-who__card .ico{grid-row:auto;margin-bottom:14px}.ab-who__card p{grid-column:1}}
+/* Pillars: handle uneven content */
+.ab-pillars{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) minmax(0,1fr);align-items:stretch}
+.ab-pillar{display:flex;flex-direction:column;text-align:left}
+.ab-pillar__icon{margin:10px 0 22px}
+.ab-pillar h3::after{left:0;transform:none}
+.ab-pillar p{flex:1 1 auto}
+.ab-pillar--feature{background:linear-gradient(180deg,#1a355c,var(--navy));border-color:rgba(200,164,93,.6);box-shadow:0 0 0 1px rgba(200,164,93,.25),0 30px 60px -34px rgba(0,0,0,.85)}
+.ab-pillar--feature::after{background:repeating-linear-gradient(90deg,var(--gold) 0 24px,transparent 24px 30px);opacity:1}
+.ab-pillar--feature .ab-pillar__flag{position:absolute;left:clamp(22px,2.4vw,34px);top:18px;z-index:2;padding:5px 12px;background:var(--gold);color:var(--navy-deep);font-family:var(--font-display);font-weight:700;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+.ab-pillar--feature .ab-pillar__lead{font-family:var(--font-display);font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.4;color:var(--white);margin:0 0 14px;flex:0 0 auto}
+.ab-pillar--feature p{font-size:1rem;line-height:1.7}
+.ab-pillar--feature .ab-pillar__icon{margin-top:44px}
+.ab-pillar__tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line-navy)}
+.ab-pillar__tags span{font-family:var(--font-display);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;background:rgba(200,164,93,.12);border:1px solid rgba(200,164,93,.45);color:var(--gold)}
+@media (max-width:1000px){.ab-pillars{grid-template-columns:1fr}.ab-pillar--feature{order:-1}}
+/* Pillars as tabs */
+.ab-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.4vw,18px);padding:clamp(18px,2.4vw,30px) clamp(12px,2vw,28px) 0;border:1px solid rgba(200,164,93,.35);border-bottom:0;background:linear-gradient(180deg,rgba(200,164,93,.1),transparent)}
+.ab-tab{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:clamp(16px,2vw,26px) 12px 22px;background:var(--navy);color:var(--on-navy-muted);border:1px solid var(--line-navy);border-bottom:0;cursor:pointer;text-align:center;font:inherit;transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
+.ab-tab::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--line-navy);transition:background .3s}
+.ab-tab:hover{background:var(--navy-2);color:var(--white);transform:translateY(-4px)}
+.ab-tab:hover::before{background:rgba(200,164,93,.6)}
+.ab-tab[aria-selected="true"]{background:linear-gradient(180deg,#1a355c,var(--navy-2));color:var(--white);border-color:rgba(200,164,93,.7)}
+.ab-tab[aria-selected="true"]::before{background:var(--gold)}
+.ab-tab[aria-selected="true"]::after{content:"";position:absolute;left:50%;bottom:-1px;width:0;height:0;margin-left:-9px;border:9px solid transparent;border-bottom-color:var(--navy-2);border-top:0;z-index:2}
+.ab-tab:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.ab-tab__num{font-family:var(--font-display);font-weight:800;font-size:.8rem;letter-spacing:.2em;color:var(--gold)}
+.ab-tab__icon{display:grid;place-items:center;width:clamp(44px,5vw,60px);height:clamp(44px,5vw,60px);padding:11px;border-radius:50%;border:1.5px solid rgba(200,164,93,.6);color:var(--gold);background:rgba(200,164,93,.08);transition:transform .5s var(--ease),background .3s}
+.ab-tab__icon svg{width:100%;height:100%}
+.ab-tab[aria-selected="true"] .ab-tab__icon{background:var(--gold);color:var(--navy-deep);box-shadow:0 0 0 7px rgba(200,164,93,.16)}
+.ab-tab:hover .ab-tab__icon{transform:scale(1.08)}
+.ab-tab__title{font-family:var(--font-display);font-weight:700;font-size:clamp(.7rem,1.25vw,1rem);letter-spacing:.1em;text-transform:uppercase;line-height:1.25}
+.ab-panels{border:1px solid rgba(200,164,93,.35);border-top:0;background:var(--navy-2);padding:0 clamp(12px,2vw,28px)}
+.ab-panel{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:clamp(24px,4vw,64px);align-items:start;padding:clamp(28px,3.6vw,52px) clamp(10px,2vw,32px);border:1px solid rgba(200,164,93,.5);border-top:0;background:linear-gradient(135deg,rgba(200,164,93,.1),transparent 55%),var(--navy-2);animation:abPanelIn .5s var(--ease)}
+.ab-panel[hidden]{display:none}
+.ab-panel__side{display:flex;flex-direction:column;gap:12px;padding-right:clamp(0px,2vw,24px);border-right:1px solid var(--line-navy);height:100%}
+.ab-panel__icon{display:grid;place-items:center;width:72px;height:72px;padding:18px;color:var(--gold);border:1.5px solid var(--gold);background:rgba(200,164,93,.1);position:relative}
+.ab-panel__icon::after{content:"";position:absolute;inset:-7px;border:1px solid rgba(200,164,93,.35)}
+.ab-panel__icon svg{width:100%;height:100%}
+.ab-panel__eyebrow{margin-top:10px;font-family:var(--font-display);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.ab-panel__side h3{font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.12;margin:0}
+.ab-panel__lead{font-family:var(--font-display);font-size:clamp(1.1rem,1.7vw,1.42rem);line-height:1.45;color:var(--white);margin:0 0 16px}
+.ab-panel__main p:not(.ab-panel__lead){color:var(--on-navy);font-size:1.02rem;line-height:1.75;margin:0}
+.ab-panel__tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-navy)}
+.ab-panel__tags span{font-family:var(--font-display);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;background:rgba(200,164,93,.12);border:1px solid rgba(200,164,93,.45);color:var(--gold)}
+@keyframes abPanelIn{from{opacity:0;transform:translateY(14px)}}
+@media (max-width:800px){
+  .ab-panel{grid-template-columns:1fr}
+  .ab-panel__side{border-right:0;border-bottom:1px solid var(--line-navy);padding:0 0 20px;flex-direction:row;flex-wrap:wrap;align-items:center;height:auto}
+  .ab-panel__eyebrow{display:none}
+  .ab-panel__icon{width:56px;height:56px;padding:14px}
+  .ab-tab{padding-inline:6px}
+  .ab-tab__title{font-size:.62rem;letter-spacing:.04em}
+  .ab-tab__num{display:none}
+}
+@media (prefers-reduced-motion:reduce){.ab-tab,.ab-tab__icon{transition:none}.ab-panel{animation:none}}
+/* Next cue: right-aligned, horizontal flight */
+/* Next cue: capsule */
+.ab-next{--r:0deg;position:relative;display:flex;align-items:center;gap:clamp(12px,1.8vw,22px);width:max-content;max-width:100%;margin:clamp(36px,5vw,64px) 0 0 auto;padding:10px 10px 10px clamp(16px,2vw,24px);border-radius:999px;color:var(--navy);text-decoration:none;text-align:right;isolation:isolate;overflow:hidden;background:rgba(255,255,255,.7);transition:transform .25s ease-out,color .35s var(--ease),box-shadow .35s var(--ease)}
+.section--navy .ab-next,.section--deep .ab-next{color:var(--white);background:rgba(255,255,255,.06)}
+.ab-next::before{content:"";position:absolute;inset:-60%;z-index:-2;background:conic-gradient(from var(--r),transparent 0 62%,var(--gold) 80%,#F1DDA6 88%,transparent 100%);animation:abNxSpin 3.4s linear infinite}
+.ab-next::after{content:"";position:absolute;inset:2px;z-index:-1;border-radius:inherit;background:#fff;transition:background .4s var(--ease)}
+.section--navy .ab-next::after,.section--deep .ab-next::after{background:var(--navy-deep)}
+.ab-next:hover,.ab-next:focus-visible{color:var(--navy-deep);box-shadow:0 18px 40px -16px rgba(200,164,93,.7),0 0 0 6px rgba(200,164,93,.14)}
+.ab-next:hover::after,.ab-next:focus-visible::after{background:var(--gold)}
+.ab-next:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+.ab-next__trail{position:relative;display:block;width:clamp(74px,10vw,120px);height:34px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent)}
+.ab-next__trail i{position:absolute;left:0;top:50%;width:100%;height:0;border-top:2px dashed var(--gold);opacity:.55;transform:translateY(-50%);animation:abNxDash .9s linear infinite;background:none}
+.ab-next__drone{position:absolute;left:0;top:50%;width:32px;height:32px;margin-top:-16px;font-style:normal;color:var(--gold-ink);animation:abNxFly 2.2s var(--ease) infinite}
+.section--navy .ab-next__drone,.section--deep .ab-next__drone{color:var(--gold)}
+.ab-next:hover .ab-next__drone{color:var(--navy-deep)}
+.ab-next__drone::before{content:"";position:absolute;right:100%;top:50%;width:46px;height:3px;margin-top:-1.5px;background:linear-gradient(270deg,var(--gold),transparent);border-radius:3px}
+.ab-next__drone svg{display:block;width:100%;height:100%;overflow:visible;transform:rotate(90deg)}
+.ab-next__drone .rot{transform-box:fill-box;transform-origin:center;animation:abNxProp .16s linear infinite}
+.ab-next__txt{display:flex;flex-direction:column;gap:3px;font-family:var(--font-display);text-transform:uppercase;white-space:nowrap}
+.ab-next__txt small{font-size:.62rem;letter-spacing:.24em;color:var(--gold-ink);transition:color .3s}
+.section--navy .ab-next__txt small,.section--deep .ab-next__txt small{color:var(--gold)}
+.ab-next:hover .ab-next__txt small{color:var(--navy-deep)}
+.ab-next__txt b{font-size:clamp(.82rem,1.4vw,1.04rem);font-weight:700;letter-spacing:.12em}
+.ab-next__go{position:relative;display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--navy-deep);animation:abNxGlow 2s ease-out infinite;transition:transform .35s var(--ease),background .3s,color .3s}
+.ab-next__go svg{width:24px;height:24px;animation:abNxNudge 1.3s var(--ease) infinite}
+.ab-next:hover .ab-next__go{background:var(--navy-deep);color:var(--gold);transform:scale(1.1) rotate(-8deg)}
+.ab-next.is-go .ab-next__drone{animation:abNxLaunch .5s cubic-bezier(.5,0,1,.6) forwards}
+.ab-next.is-go .ab-next__go{transform:scale(1.25);box-shadow:0 0 0 16px rgba(200,164,93,.3)}
+@property --r{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes abNxSpin{to{--r:360deg}}
+@keyframes abNxDash{to{background-position:0 0;transform:translate(-14px,-50%)}}
+@keyframes abNxFly{0%{transform:translateX(-50px);opacity:0}18%{opacity:1}75%{transform:translateX(calc(clamp(74px,10vw,120px) - 36px));opacity:1}100%{transform:translateX(calc(clamp(74px,10vw,120px) + 10px));opacity:0}}
+@keyframes abNxLaunch{to{transform:translateX(160px) scale(1.3);opacity:0}}
+@keyframes abNxProp{to{transform:scaleX(.25)}}
+@keyframes abNxGlow{0%{box-shadow:0 0 0 0 rgba(200,164,93,.6)}70%,100%{box-shadow:0 0 0 16px rgba(200,164,93,0)}}
+@keyframes abNxNudge{0%,100%{transform:translateX(-3px)}50%{transform:translateX(4px)}}
+@media (max-width:640px){.ab-next__trail{display:none}.ab-next{padding-left:18px}}
+@media (prefers-reduced-motion:reduce){.ab-next::before,.ab-next__trail i,.ab-next__drone,.ab-next__drone .rot,.ab-next__go,.ab-next__go svg{animation:none}.ab-next__drone{opacity:0}}
+/* Next cue: hovering drone + beam */
+.ab-nx{position:relative;display:flex;justify-content:flex-end;margin-top:clamp(28px,4vw,48px);padding-top:clamp(66px,8vw,92px)}
+.ab-nx .ab-next{margin:0}
+.js .ab-nx{opacity:0;transform:translateX(90px)}
+.js .ab-nx.is-in{opacity:1;transform:none;transition:opacity .5s ease-out,transform .9s cubic-bezier(.2,1.5,.4,1)}
+.ab-nx__drone{position:absolute;z-index:3;right:clamp(12px,3vw,40px);top:0;width:clamp(84px,9vw,112px);color:var(--gold-ink);pointer-events:none;animation:abNxBob 3s ease-in-out infinite;filter:drop-shadow(0 14px 12px rgba(7,20,38,.3))}
+.section--navy .ab-nx__drone,.section--deep .ab-nx__drone{color:var(--gold)}
+.ab-nx__drone svg{display:block;width:100%;height:auto;overflow:visible}
+.ab-nx__drone .bl{transform-box:fill-box;transform-origin:center;animation:abNxProp .12s linear infinite}
+.ab-nx__drone .eye{animation:abNxEye 1.2s ease-in-out infinite}
+.ab-nx__beam{position:absolute;left:50%;top:78%;width:150%;height:clamp(60px,7vw,90px);margin-left:-75%;background:linear-gradient(180deg,rgba(200,164,93,.55),rgba(200,164,93,0));clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);transform-origin:50% 0;animation:abNxSway 3s ease-in-out infinite;z-index:-1}
+.ab-nx:hover .ab-nx__drone{animation-duration:1.2s}
+.ab-nx.is-go .ab-nx__drone{animation:abNxZoom .6s cubic-bezier(.5,0,1,.6) forwards}
+.ab-nx:hover .ab-nx__beam{background:linear-gradient(180deg,rgba(241,221,166,.85),rgba(200,164,93,0))}
+@keyframes abNxBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+@keyframes abNxSway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes abNxEye{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes abNxZoom{to{transform:translateY(160px) scale(1.5);opacity:0}}
+/* bigger, bolder capsule */
+.ab-next{padding:12px 12px 12px clamp(18px,2.4vw,30px);box-shadow:0 20px 44px -22px rgba(7,20,38,.55)}
+.ab-next__go{width:62px;height:62px}
+.ab-next__go svg{width:28px;height:28px}
+.ab-next__txt b{font-size:clamp(.9rem,1.6vw,1.2rem)}
+.ab-next__txt b{background:linear-gradient(100deg,currentColor 38%,var(--gold) 50%,currentColor 62%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:abNxShine 2.8s linear infinite}
+.ab-next:hover .ab-next__txt b{-webkit-text-fill-color:var(--navy-deep);background:none;animation:none}
+@keyframes abNxShine{to{background-position:-250% 0}}
+@media (max-width:640px){.ab-nx__drone{width:72px;right:8px}.ab-nx{padding-top:66px}}
+@media (prefers-reduced-motion:reduce){.ab-nx__drone,.ab-nx__beam,.ab-nx__drone .bl,.ab-nx__drone .eye,.ab-next__txt b{animation:none}.js .ab-nx{opacity:1;transform:none;transition:none}}
 /* About page enhancements */
 .ab-blueprint{position:relative;overflow:hidden}
 .ab-blueprint::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,93,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,93,.07) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 80%);pointer-events:none}
@@ -177,8 +351,9 @@
 .ab-vm__label{font-family:var(--font-display);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
 .ab-vm__card h3{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:0}
 .ab-vm__card p{position:relative;z-index:1;font-size:1.04rem}
-.ab-vm__chips{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-navy)}
-.ab-vm__chips span{font-family:var(--font-display);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 11px;background:rgba(200,164,93,.12);border:1px solid rgba(200,164,93,.45);color:var(--gold)}
+.ab-vm__chips{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-navy);container-type:inline-size}
+.ab-vm__chips span{display:block;min-width:0;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-display);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 6px;background:rgba(200,164,93,.12);border:1px solid rgba(200,164,93,.45);color:var(--gold)}
+@container (min-width:400px){.ab-vm__chips{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .ab-vm__link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:clamp(40px,5vw,72px)}
 .ab-vm__link i{flex:1;width:1px;background:linear-gradient(transparent,var(--gold),transparent)}
 .ab-vm__link b{display:block;width:16px;height:16px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 0 6px rgba(200,164,93,.18);animation:abPulse 2.4s ease-in-out infinite}
@@ -229,7 +404,6 @@
       <h1 id="page-title">Redefining Facility Management Through <em>Technology</em>, Innovation &amp; Excellence</h1>
       <p class="ab-hero__lead">DroneX Facility Services is a next-generation facility management and infrastructure services company.</p>
       <div class="btn-row" style="margin-top:clamp(18px,3.4vh,32px)">
-        <a class="btn" href="/contact/">Request a Site Assessment</a>
         <a class="btn btn--ghost-light" href="/why-dronex/">Why DroneX</a>
       </div>
       <div class="ab-hero__strip" aria-hidden="true"><span>Facilities</span><span>Drones</span><span>Fire &amp; Safety</span></div>
@@ -252,53 +426,58 @@
       <div class="ab-chip ab-chip--3"><b>03</b>Safety</div>
     </div>
   </div>
-  <a class="ab-hero__scroll" href="#who-title" aria-label="Scroll to Who we are">Scroll<i></i></a>
+  <a class="ab-hero__scroll" href="#sec-who" aria-label="Scroll to Who we are">Scroll<i></i></a>
 </section>
 
-<section class="section ab-who" aria-labelledby="who-title">
+<section class="section ab-who" id="sec-who" aria-labelledby="who-title">
   <div class="wrap">
     <div class="ab-who__grid">
       <div class="reveal">
         <span class="ab-eyebrow" style="color:var(--gold-ink)">Who we are</span>
-        <h2 id="who-title">Facility management, rethought for the way buildings work today.</h2>
+        <h2 id="who-title">Facility management, <em>rethought</em> for the way buildings work today.</h2>
         <p class="lead">DroneX Facility Services is a next-generation facility management and infrastructure services company committed to transforming the way buildings, workplaces and infrastructure assets are managed, maintained and serviced.</p>
-        <div class="ab-who__cols">
-          <p>We bring together the strength of conventional facility management expertise and the possibilities of emerging technologies to deliver smarter, safer, more efficient and sustainable service solutions.</p>
-          <p>Our approach combines professional facility operations, specialised maintenance capabilities, technology-enabled services, automation and drone-based solutions to address the evolving requirements of modern commercial properties, corporate campuses, industrial establishments and infrastructure developments.</p>
-        </div>
         <div class="ab-who__quote"><span>Facility management must evolve beyond routine maintenance. It must become <em>intelligent, predictive, technology-enabled</em> and focused on measurable value for asset owners, occupiers and stakeholders.</span></div>
       </div>
       <div class="ab-who__media reveal">
         <div class="frame"><picture><source type="image/webp" srcset="/assets/img/glass-tower-800.webp 800w, /assets/img/glass-tower-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 40vw"><img src="/assets/img/glass-tower-1600.jpg" srcset="/assets/img/glass-tower-800.jpg 800w, /assets/img/glass-tower-1600.jpg 1600w" sizes="(max-width: 900px) 100vw, 40vw" alt="A modern glass office tower viewed from street level" loading="lazy" decoding="async"></picture></div>
         <div class="ab-who__inset"><picture><source type="image/webp" srcset="/assets/img/drone-glass-facade-800.webp 800w" sizes="(max-width: 900px) 50vw, 22vw"><img src="/assets/img/drone-glass-facade-800.jpg" alt="A drone working close to a glass façade" loading="lazy" decoding="async"></picture><span>Drone-enabled</span></div>
+        <div class="ab-who__seal" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="abSealPath" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text><textPath href="#abSealPath">Technology · Safety · Expertise · </textPath></text></svg></div>
         <div class="ab-who__badge">Beyond the Drone.<br>Into the Building.</div>
       </div>
     </div>
+    <div class="ab-who__cols reveal">
+          <div class="ab-who__card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="10" height="18"/><path d="M15 9h4v12H5M8 7h4M8 11h4M8 15h4"/></svg></span><small><b>01</b>Our foundation</small><p>We bring together the strength of conventional facility management expertise and the possibilities of emerging technologies to deliver smarter, safer, more efficient and sustainable service solutions.</p></div>
+          <div class="ab-who__card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="2.5"/><path d="M10 10 5 5M14 10l5-5M10 14l-5 5M14 14l5 5"/><circle cx="4" cy="4" r="2"/><circle cx="20" cy="4" r="2"/><circle cx="4" cy="20" r="2"/><circle cx="20" cy="20" r="2"/></svg></span><small><b>02</b>Our approach</small><p>Our approach combines professional facility operations, specialised maintenance capabilities, technology-enabled services, automation and drone-based solutions to address the evolving requirements of modern commercial properties, corporate campuses, industrial establishments and infrastructure developments.</p></div>
+        </div>
     <div class="ab-who__traits reveal" aria-label="What defines our approach"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>Smarter</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>Safer</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>More efficient</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>Sustainable</span></div>
+  <div class="ab-nx"><span class="ab-nx__drone" aria-hidden="true"><span class="ab-nx__beam"></span><svg viewBox="0 0 120 80" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="currentColor" stroke-width="3"><path d="M44 36 18 22M76 36l26-14M48 46 22 62M72 46l26 16"/></g><g class="bl"><ellipse cx="14" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="106" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="18" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="102" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><rect x="42" y="30" width="36" height="26" rx="9" fill="#0B1F3A" stroke="currentColor" stroke-width="3"/><circle cx="60" cy="43" r="7" fill="#071426" stroke="currentColor" stroke-width="2"/><circle class="eye" cx="60" cy="43" r="3" fill="#C8A45D" stroke="none"/><path d="M52 58h16" stroke="currentColor" stroke-width="3"/></svg></span><a class="ab-next" href="#sec-vm"><span class="ab-next__trail" aria-hidden="true"><em class="ab-next__drone"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 13l14 14M27 13L13 27"/><rect x="16" y="16" width="8" height="8" rx="2" fill="currentColor"/><g class="rot"><ellipse cx="9" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="9" cy="31" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="31" rx="6" ry="2"/></g></svg></em><i></i></span><span class="ab-next__txt"><small>Next · 02 / 05</small><b>Vision &amp; Mission</b></span><span class="ab-next__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+  
   </div>
 </section>
 
-<section class="section section--navy ab-blueprint" aria-labelledby="vm-title">
+<section class="section section--navy ab-blueprint" id="sec-vm" aria-labelledby="vm-title">
   <div class="wrap">
     <div class="heading reveal"><span class="ab-eyebrow">Where we are headed</span><h2 id="vm-title">Vision and mission</h2></div>
     <div class="ab-vm reveal">
       <article class="ab-vm__card" data-word="VISION">
         <div class="ab-vm__top"><span class="ab-vm__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 16s5.5-9 14-9 14 9 14 9-5.5 9-14 9S2 16 2 16Z"/><circle cx="16" cy="16" r="4.5"/></svg></span><div><span class="ab-vm__label">Where we are going</span><h3>Our Vision</h3></div></div>
         <p>To emerge as a trusted and progressive leader in technology-driven facility management and smart infrastructure services, setting new benchmarks in operational excellence, innovation, safety and sustainability.</p>
-        <div class="ab-vm__chips" aria-hidden="true"><span>Excellence</span><span>Innovation</span><span>Safety</span><span>Sustainability</span></div>
+        <div class="ab-vm__chips" aria-hidden="true"><span>Excellence</span><span>Innovation</span><span>Safety</span><span>Sustainable</span></div>
       </article>
       <div class="ab-vm__link" aria-hidden="true"><i></i><b></b><i></i></div>
       <article class="ab-vm__card" data-word="MISSION">
         <div class="ab-vm__top"><span class="ab-vm__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="6"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/><path d="M16 1v5M16 26v5M1 16h5M26 16h5"/></svg></span><div><span class="ab-vm__label">How we get there</span><h3>Our Mission</h3></div></div>
         <p>To deliver integrated, reliable and technology-enabled facility solutions that enhance asset performance, optimise operational costs, improve service efficiency and create safer, smarter and more sustainable environments.</p>
         <p style="margin-top:12px">We strive to bridge the gap between traditional facility management practices and next-generation technologies through continuous innovation, professional expertise and a commitment to service excellence.</p>
-        <div class="ab-vm__chips" aria-hidden="true"><span>Asset performance</span><span>Cost optimisation</span><span>Service efficiency</span><span>Safer environments</span></div>
+        <div class="ab-vm__chips" aria-hidden="true"><span>Performance</span><span>Efficiency</span><span>Cost savings</span><span>Safer sites</span></div>
       </article>
     </div>
+  <div class="ab-nx"><span class="ab-nx__drone" aria-hidden="true"><span class="ab-nx__beam"></span><svg viewBox="0 0 120 80" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="currentColor" stroke-width="3"><path d="M44 36 18 22M76 36l26-14M48 46 22 62M72 46l26 16"/></g><g class="bl"><ellipse cx="14" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="106" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="18" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="102" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><rect x="42" y="30" width="36" height="26" rx="9" fill="#0B1F3A" stroke="currentColor" stroke-width="3"/><circle cx="60" cy="43" r="7" fill="#071426" stroke="currentColor" stroke-width="2"/><circle class="eye" cx="60" cy="43" r="3" fill="#C8A45D" stroke="none"/><path d="M52 58h16" stroke="currentColor" stroke-width="3"/></svg></span><a class="ab-next" href="#sec-philo"><span class="ab-next__trail" aria-hidden="true"><em class="ab-next__drone"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 13l14 14M27 13L13 27"/><rect x="16" y="16" width="8" height="8" rx="2" fill="currentColor"/><g class="rot"><ellipse cx="9" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="9" cy="31" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="31" rx="6" ry="2"/></g></svg></em><i></i></span><span class="ab-next__txt"><small>Next · 03 / 05</small><b>Our Operating Philosophy</b></span><span class="ab-next__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+  
   </div>
 </section>
 
-<section class="section section--deep ab-blueprint" aria-labelledby="philo-title">
+<section class="section section--deep ab-blueprint" id="sec-philo" aria-labelledby="philo-title">
   <div class="wrap">
     <div class="ab-philo-head reveal">
       <span class="ab-eyebrow">Our operating philosophy</span>
@@ -307,28 +486,27 @@
     </div>
     <div class="ab-temple reveal">
     <div class="ab-roof">One Integrated Approach</div>
-    <div class="ab-pillars">
-      <article class="ab-pillar">
-        <span class="ab-pillar__num" aria-hidden="true">01</span>
-        <svg class="ab-pillar__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="5" width="18" height="34"/><path d="M27 15h8v24H9M14 12h8M14 19h8M14 26h8M14 33h8"/></svg>
-        <h3>Industry Expertise</h3>
-        <p>Understanding how buildings, properties and infrastructure operate through experienced Facilities and Property Management professionals.</p>
-      </article>
-      <article class="ab-pillar">
-        <span class="ab-pillar__num" aria-hidden="true">02</span>
-        <svg class="ab-pillar__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="22" cy="22" r="4"/><path d="M18 18 9 9M26 18l9-9M18 26l-9 9M26 26l9 9"/><circle cx="8" cy="8" r="5"/><circle cx="36" cy="8" r="5"/><circle cx="8" cy="36" r="5"/><circle cx="36" cy="36" r="5"/></svg>
-        <h3>Engineering &amp; Innovation</h3>
-        <p>Applying drone technology, engineering capabilities and specialised equipment to reimagine conventional service methodologies.</p>
-      </article>
-      <article class="ab-pillar">
-        <span class="ab-pillar__num" aria-hidden="true">03</span>
-        <svg class="ab-pillar__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 4 6 10v11c0 10 7 16 16 19 9-3 16-9 16-19V10Z"/><path d="m15 22 5 5 9-10"/></svg>
-        <h3>Safety &amp; Compliance</h3>
-        <p>Embedding professional Fire &amp; Safety knowledge, risk management and responsible operating practices into every relevant engagement.</p>
-      </article>
+    <div class="ab-tabs" role="tablist" aria-label="Three pillars">
+      <button class="ab-tab" type="button" role="tab" id="abtab-1" aria-controls="abpanel-1" aria-selected="true" tabindex="0"><span class="ab-tab__num">01</span><span class="ab-tab__icon"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="5" width="18" height="34"/><path d="M27 15h8v24H9M14 12h8M14 19h8M14 26h8M14 33h8"/></svg></span><span class="ab-tab__title">Industry Expertise</span></button>
+      <button class="ab-tab" type="button" role="tab" id="abtab-2" aria-controls="abpanel-2" aria-selected="false" tabindex="-1"><span class="ab-tab__num">02</span><span class="ab-tab__icon"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="22" cy="22" r="4"/><path d="M18 18 9 9M26 18l9-9M18 26l-9 9M26 26l9 9"/><circle cx="8" cy="8" r="5"/><circle cx="36" cy="8" r="5"/><circle cx="8" cy="36" r="5"/><circle cx="36" cy="36" r="5"/></svg></span><span class="ab-tab__title">Engineering &amp; Innovation</span></button>
+      <button class="ab-tab" type="button" role="tab" id="abtab-3" aria-controls="abpanel-3" aria-selected="false" tabindex="-1"><span class="ab-tab__num">03</span><span class="ab-tab__icon"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 4 6 10v11c0 10 7 16 16 19 9-3 16-9 16-19V10Z"/><path d="m15 22 5 5 9-10"/></svg></span><span class="ab-tab__title">Safety &amp; Compliance</span></button>
+    </div>
+    <div class="ab-panels">
+      <div class="ab-panel" role="tabpanel" id="abpanel-1" aria-labelledby="abtab-1">
+        <div class="ab-panel__side"><span class="ab-panel__icon"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="5" width="18" height="34"/><path d="M27 15h8v24H9M14 12h8M14 19h8M14 26h8M14 33h8"/></svg></span><span class="ab-panel__eyebrow">Pillar 01</span><h3>Industry Expertise</h3></div>
+        <div class="ab-panel__main"><p class="ab-panel__lead">Understanding how buildings, properties and infrastructure operate through experienced Facilities and Property Management professionals.</p><div class="ab-panel__tags" aria-hidden="true"><span>Buildings</span><span>Properties</span><span>Infrastructure</span><span>Facilities Management</span></div></div>
+      </div>
+      <div class="ab-panel" role="tabpanel" id="abpanel-2" aria-labelledby="abtab-2" hidden>
+        <div class="ab-panel__side"><span class="ab-panel__icon"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="22" cy="22" r="4"/><path d="M18 18 9 9M26 18l9-9M18 26l-9 9M26 26l9 9"/><circle cx="8" cy="8" r="5"/><circle cx="36" cy="8" r="5"/><circle cx="8" cy="36" r="5"/><circle cx="36" cy="36" r="5"/></svg></span><span class="ab-panel__eyebrow">Pillar 02</span><h3>Engineering &amp; Innovation</h3></div>
+        <div class="ab-panel__main"><p class="ab-panel__lead">In collaboration with an established Indian drone manufacturer, Dronex brings proven drone technology and engineering capabilities into the Facility Management ecosystem.</p><p>Our focus is on adapting and deploying specialised drone applications for façade cleaning, high-rise building maintenance and other allied infrastructure services, redefining conventional operational practices through technology-led innovation, enhanced safety and improved service efficiency.</p><div class="ab-panel__tags" aria-hidden="true"><span>Façade cleaning</span><span>High-rise maintenance</span><span>Allied infrastructure</span></div></div>
+      </div>
+      <div class="ab-panel" role="tabpanel" id="abpanel-3" aria-labelledby="abtab-3" hidden>
+        <div class="ab-panel__side"><span class="ab-panel__icon"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 4 6 10v11c0 10 7 16 16 19 9-3 16-9 16-19V10Z"/><path d="m15 22 5 5 9-10"/></svg></span><span class="ab-panel__eyebrow">Pillar 03</span><h3>Safety &amp; Compliance</h3></div>
+        <div class="ab-panel__main"><p class="ab-panel__lead">Embedding professional Fire &amp; Safety knowledge, risk management and responsible operating practices into every relevant engagement.</p><div class="ab-panel__tags" aria-hidden="true"><span>Fire &amp; Safety</span><span>Risk management</span><span>Responsible practices</span></div></div>
+      </div>
     </div>
     <div class="ab-plinth" aria-hidden="true"></div>
-    </div>
+  </div>
     <div class="ab-merge reveal">
       <svg viewBox="0 0 120 104" fill="none" aria-hidden="true"><circle cx="45" cy="38" r="30" stroke="#C8A45D" stroke-width="2" fill="rgba(200,164,93,.10)"/><circle cx="75" cy="38" r="30" stroke="#C8A45D" stroke-width="2" fill="rgba(200,164,93,.10)"/><circle cx="60" cy="66" r="30" stroke="#C8A45D" stroke-width="2" fill="rgba(200,164,93,.10)"/><circle cx="60" cy="48" r="5" fill="#C8A45D"/></svg>
       <div>
@@ -336,10 +514,12 @@
         <div class="ab-tags" aria-hidden="true"><span>Practical</span><span>Technology-enabled</span><span>Safety-conscious</span><span>Measurable</span></div>
       </div>
     </div>
+  <div class="ab-nx"><span class="ab-nx__drone" aria-hidden="true"><span class="ab-nx__beam"></span><svg viewBox="0 0 120 80" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="currentColor" stroke-width="3"><path d="M44 36 18 22M76 36l26-14M48 46 22 62M72 46l26 16"/></g><g class="bl"><ellipse cx="14" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="106" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="18" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="102" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><rect x="42" y="30" width="36" height="26" rx="9" fill="#0B1F3A" stroke="currentColor" stroke-width="3"/><circle cx="60" cy="43" r="7" fill="#071426" stroke="currentColor" stroke-width="2"/><circle class="eye" cx="60" cy="43" r="3" fill="#C8A45D" stroke="none"/><path d="M52 58h16" stroke="currentColor" stroke-width="3"/></svg></span><a class="ab-next" href="#sec-team"><span class="ab-next__trail" aria-hidden="true"><em class="ab-next__drone"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 13l14 14M27 13L13 27"/><rect x="16" y="16" width="8" height="8" rx="2" fill="currentColor"/><g class="rot"><ellipse cx="9" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="9" cy="31" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="31" rx="6" ry="2"/></g></svg></em><i></i></span><span class="ab-next__txt"><small>Next · 04 / 05</small><b>Our Management Team</b></span><span class="ab-next__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+  
   </div>
 </section>
 
-<section class="section ab-team" aria-labelledby="team-title">
+<section class="section ab-team" id="sec-team" aria-labelledby="team-title">
   <div class="wrap">
     <div class="heading reveal">
       <span class="ab-eyebrow">Our biggest differentiator — our management team</span>
@@ -353,17 +533,19 @@
       </div>
       <div class="cap-row reveal">
         <div class="cap-row__visual" data-tag="Engineering"><picture><source type="image/webp" srcset="/assets/img/drone-glass-facade-800.webp 800w, /assets/img/drone-glass-facade-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="/assets/img/drone-glass-facade-1600.jpg" srcset="/assets/img/drone-glass-facade-800.jpg 800w, /assets/img/drone-glass-facade-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="A drone working close to a glass façade" loading="lazy" decoding="async"></picture></div>
-        <div class="cap-row__body"><div class="cap-row__num">02</div><h3>Drone Technology &amp; Manufacturing Specialists</h3><p>Our association with drone technology and manufacturing expertise brings engineering knowledge, technological capabilities and an innovation-led approach to specialised service delivery.</p><p>This expertise supports the development and application of purpose-oriented drone solutions for façade cleaning, external building maintenance, infrastructure inspection and other specialised applications.</p><p>By combining operational requirements with engineering capabilities, we aim to move beyond conventional methods and introduce safer, smarter and more efficient service models.</p><div class="cap-row__chips" aria-hidden="true"><span>Façade cleaning</span><span>External maintenance</span><span>Infrastructure inspection</span></div></div>
+        <div class="cap-row__body"><div class="cap-row__num">02</div><h3>Drone Technology &amp; Engineering Innovation</h3><p>In collaboration with an established Indian drone manufacturer, Dronex brings proven drone technology and engineering capabilities into the Facility Management ecosystem. Our focus is on adapting and deploying specialised drone applications for façade cleaning, high-rise building maintenance and other allied infrastructure services, redefining conventional operational practices through technology-led innovation, enhanced safety and improved service efficiency.</p><div class="cap-row__chips" aria-hidden="true"><span>Façade cleaning</span><span>High-rise maintenance</span><span>Allied infrastructure</span><span>Enhanced safety</span></div></div>
       </div>
       <div class="cap-row reveal">
         <div class="cap-row__visual" data-tag="Safety"><picture><source type="image/webp" srcset="/assets/img/rope-access-briefing-800.webp 800w, /assets/img/rope-access-briefing-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="/assets/img/rope-access-briefing-1600.jpg" srcset="/assets/img/rope-access-briefing-800.jpg 800w, /assets/img/rope-access-briefing-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="A safety briefing for a rope access team" loading="lazy" decoding="async"></picture></div>
         <div class="cap-row__body"><div class="cap-row__num">03</div><h3>Qualified Fire &amp; Safety Professionals</h3><p>Safety is fundamental to every aspect of our service philosophy.</p><p>Our team includes qualified Fire &amp; Safety Subject Matter Experts who bring specialist knowledge of fire prevention, life safety, workplace safety, risk assessment, emergency preparedness and statutory safety requirements.</p><p>Their involvement ensures that safety considerations are integrated into operational planning, execution methodologies and service delivery protocols rather than being treated as an afterthought.</p><p>This integrated approach is particularly important when undertaking specialised activities involving high-rise buildings, external façades, technical installations and complex infrastructure environments.</p><div class="cap-row__chips" aria-hidden="true"><span>Fire prevention</span><span>Life safety</span><span>Risk assessment</span><span>Emergency preparedness</span></div></div>
       </div>
     </div>
+  <div class="ab-nx"><span class="ab-nx__drone" aria-hidden="true"><span class="ab-nx__beam"></span><svg viewBox="0 0 120 80" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="currentColor" stroke-width="3"><path d="M44 36 18 22M76 36l26-14M48 46 22 62M72 46l26 16"/></g><g class="bl"><ellipse cx="14" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="106" cy="18" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="18" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><g class="bl"><ellipse cx="102" cy="62" rx="16" ry="3.5" fill="rgba(200,164,93,.35)" stroke="currentColor" stroke-width="2"/></g><rect x="42" y="30" width="36" height="26" rx="9" fill="#0B1F3A" stroke="currentColor" stroke-width="3"/><circle cx="60" cy="43" r="7" fill="#071426" stroke="currentColor" stroke-width="2"/><circle class="eye" cx="60" cy="43" r="3" fill="#C8A45D" stroke="none"/><path d="M52 58h16" stroke="currentColor" stroke-width="3"/></svg></span><a class="ab-next" href="#sec-cta"><span class="ab-next__trail" aria-hidden="true"><em class="ab-next__drone"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 13l14 14M27 13L13 27"/><rect x="16" y="16" width="8" height="8" rx="2" fill="currentColor"/><g class="rot"><ellipse cx="9" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="9" rx="6" ry="2"/></g><g class="rot"><ellipse cx="9" cy="31" rx="6" ry="2"/></g><g class="rot"><ellipse cx="31" cy="31" rx="6" ry="2"/></g></svg></em><i></i></span><span class="ab-next__txt"><small>Next · 05 / 05</small><b>Talk to Us</b></span><span class="ab-next__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+  
   </div>
 </section>
 
-<section class="section section--paper">
+<section class="section section--paper" id="sec-cta">
   <div class="wrap" style="text-align:center">
     <div class="heading heading--center reveal"><h2>Talk to us about your building</h2><p>Tell us about your property and we will plan the right approach with you.</p></div>
     <div class="btn-row" style="justify-content:center"><a class="btn btn--navy" href="/contact/">Request a Site Assessment</a></div>
@@ -371,6 +553,8 @@
 </section>
 
 </main>
+<div class="ab-progress" aria-hidden="true"><i></i></div>
+<button class="ab-top" type="button" aria-label="Back to top"><svg class="ab-top__ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="rgba(200,164,93,.3)" stroke-width="2"/><circle class="ab-top__bar" cx="24" cy="24" r="21" fill="none" stroke="#C8A45D" stroke-width="2.5" stroke-dasharray="131.9" stroke-dashoffset="131.9" transform="rotate(-90 24 24)"/></svg><svg class="ab-top__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 19V5M5 11l7-7 7 7"/></svg></button>
 <footer class="site-footer">
   <div class="wrap site-footer__top">
     <div class="site-footer__about">
@@ -397,6 +581,85 @@
 
 <script>
 document.querySelectorAll('.ab-pillar').forEach(function(el){el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')})});
+</script>
+<script>
+(function(){
+  var btn=document.querySelector('.ab-top'),bar=document.querySelector('.ab-top__bar'),prog=document.querySelector('.ab-progress i'),tick=false;
+  function upd(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight,y=window.scrollY||h.scrollTop,p=max>0?Math.min(1,y/max):0;
+    if(prog)prog.style.transform='scaleX('+p+')';
+    if(bar)bar.style.strokeDashoffset=131.9*(1-p);
+    if(btn)btn.classList.toggle('is-on',y>500);
+    tick=false;
+  }
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+  upd();
+  if(btn)btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})});
+})();
+</script>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.querySelectorAll('a.ab-next,a.ab-hero__scroll').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=(a.getAttribute('href')||'').slice(1),t=id&&document.getElementById(id);
+      if(!t)return;
+      e.preventDefault();
+      var go=function(){
+        var hdr=document.querySelector('.site-header'),off=hdr?hdr.getBoundingClientRect().height:0;
+        var y=t.getBoundingClientRect().top+(window.scrollY||window.pageYOffset)-off+1;
+        window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'});
+        try{history.replaceState(null,'','#'+id)}catch(_){}
+        t.setAttribute('tabindex','-1');
+      };
+      if(reduce){go();return}
+      var w=a.closest('.ab-nx')||a;w.classList.add('is-go');a.classList.add('is-go');
+      setTimeout(function(){go();setTimeout(function(){w.classList.remove('is-go');a.classList.remove('is-go')},900)},260);
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var m=document.querySelector('.ab-who__media'),f=m&&m.querySelector('.frame');
+  if(!f||window.matchMedia('(prefers-reduced-motion:reduce)').matches||!window.matchMedia('(hover:hover)').matches)return;
+  m.addEventListener('pointermove',function(e){var r=m.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;f.style.transform='perspective(900px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg)'});
+  m.addEventListener('pointerleave',function(){f.style.transform=''});
+})();
+</script>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.ab-tab')),panels=[].slice.call(document.querySelectorAll('.ab-panel'));
+  if(!tabs.length)return;
+  function sel(i,focus){tabs.forEach(function(t,k){var on=k===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(panels[k]){if(on)panels[k].removeAttribute('hidden');else panels[k].setAttribute('hidden','')}});if(focus)tabs[i].focus()}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){sel(i)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight')n=(i+1)%tabs.length;
+      else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;
+      if(n!==null){e.preventDefault();sel(n,true)}
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches||!window.matchMedia('(hover:hover)').matches)return;
+  document.querySelectorAll('a.ab-next').forEach(function(a){
+    a.addEventListener('pointermove',function(e){var r=a.getBoundingClientRect();a.style.transform='translate('+((e.clientX-r.left-r.width/2)*.08)+'px,'+((e.clientY-r.top-r.height/2)*.22)+'px)'});
+    a.addEventListener('pointerleave',function(){a.style.transform=''});
+  });
+})();
+</script>
+<script>
+(function(){
+  var els=document.querySelectorAll('.ab-nx');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('is-in')});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('is-in');io.unobserve(x.target)}})},{threshold:.35});
+  els.forEach(function(e){io.observe(e)});
+})();
 </script>
 </body>
 </html>
