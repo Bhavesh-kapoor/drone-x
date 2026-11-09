@@ -857,7 +857,3 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .flight__trail { stroke-dashoffset: 0; } .flight__drone { display: none; } }
 .hero__flight { right: calc(max(var(--gutter), (100vw - var(--wrap)) / 2 + var(--gutter)) + 56px); }
-
-.intro__media { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.intro__fig img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-radius: 4px; }
-@media (max-width: 860px) { .intro__media { grid-template-columns: 1fr; } }
