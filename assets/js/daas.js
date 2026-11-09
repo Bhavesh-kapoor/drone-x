@@ -3,7 +3,7 @@
   var c=document.querySelector('.daas__card');
   if(!c)return;
   c.addEventListener('click',function(e){
-    if(e.target.closest('a'))return;
+    if(e.target.closest('a,.daas__bulb,.daas__call'))return;
     if(window.matchMedia('(hover:hover)').matches)return;
     c.classList.toggle('is-open');
   });
@@ -55,4 +55,57 @@
     new IntersectionObserver(function(en){en.forEach(function(x){x.isIntersecting?start():stop()})},{threshold:.5}).observe(f);
   }
   f.addEventListener('mouseenter',stop);
+})();
+
+/* DaaS bulb: click to open the call panel */
+(function(){
+  var b=document.querySelector('.daas__bulb'),p=document.getElementById('daas-call');
+  if(!b||!p)return;
+  function set(open){b.setAttribute('aria-expanded',open);if(open)p.removeAttribute('hidden');else p.setAttribute('hidden','')}
+  b.addEventListener('click',function(e){e.stopPropagation();set(b.getAttribute('aria-expanded')!=='true')});
+  document.addEventListener('click',function(e){if(!e.target.closest('.daas__bulb,.daas__call'))set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus()}});
+})();
+
+/* Services portfolio: phase filter + tap-to-open on touch */
+(function(){
+  var root=document.querySelector('[data-ds]');
+  if(!root)return;
+  var cards=[].slice.call(root.querySelectorAll('.ds-card')),btns=[].slice.call(root.querySelectorAll('.ds-filter button')),grid=root.querySelector('.ds-grid');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-f');
+      btns.forEach(function(x){var on=x===b;x.classList.toggle('is-on',on);x.setAttribute('aria-pressed',on)});
+      cards.forEach(function(c){c.classList.remove('is-open');c.hidden=!(f==='all'||c.getAttribute('data-phase')===f)});
+      grid.classList.remove('is-filtering');void grid.offsetWidth;grid.classList.add('is-filtering');
+    });
+  });
+  var touch=!window.matchMedia('(hover:hover)').matches;
+  cards.forEach(function(c){
+    c.addEventListener('click',function(){
+      if(!touch)return;
+      var open=c.classList.contains('is-open');
+      cards.forEach(function(x){x.classList.remove('is-open')});
+      if(!open)c.classList.add('is-open');
+    });
+    c.addEventListener('keydown',function(e){if(e.key==='Escape')c.classList.remove('is-open');if(e.key==='Enter'||e.key===' '){e.preventDefault();c.classList.toggle('is-open')}});
+  });
+})();
+
+
+/* Services: open the card linked from the header menu (#svc-N) */
+(function(){
+  function show(){
+    var id=location.hash.replace('#','');
+    if(!/^svc-\d+$/.test(id))return;
+    var c=document.getElementById(id),root=document.querySelector('[data-ds]');
+    if(!c||!root)return;
+    var all=root.querySelector('.ds-filter [data-f="all"]');
+    if(c.hidden&&all)all.click();
+    [].forEach.call(root.querySelectorAll('.ds-card.is-open'),function(x){x.classList.remove('is-open')});
+    c.classList.add('is-open');
+    setTimeout(function(){var hdr=document.querySelector('.site-header');var y=c.getBoundingClientRect().top+scrollY-(hdr?hdr.offsetHeight:0)-90;scrollTo({top:Math.max(0,y),behavior:'smooth'})},60);
+  }
+  window.addEventListener('hashchange',show);
+  window.addEventListener('load',function(){setTimeout(show,150)});
 })();
