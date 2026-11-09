@@ -1,0 +1,66 @@
+/* Services built around how buildings run (home) */
+#services{position:relative;overflow:hidden}
+#services::before{content:"";position:absolute;right:-140px;top:-100px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(200,164,93,.18),transparent 70%);pointer-events:none}
+#services .wrap{position:relative}
+.svc__eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:16px}
+.svc__eyebrow::before{content:"";width:36px;height:2px;background:var(--gold)}
+#services .heading h2{font-size:clamp(2rem,4vw,3.2rem)}
+/* group titles */
+#services .svc-group__title{border-bottom:0;padding-bottom:0;margin-bottom:22px;align-items:center;position:relative}
+#services .svc-group__title::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:1px;background:linear-gradient(90deg,var(--gold),var(--line) 30%,var(--line))}
+#services .svc-group__title h3{display:flex;align-items:center;gap:14px;font-size:clamp(1.15rem,1.8vw,1.45rem)}
+#services .svc-group__title h3::before{content:"";width:12px;height:12px;background:var(--gold);transform:rotate(45deg);flex:none}
+#services .svc-split{gap:clamp(48px,6vw,80px)}
+/* service cards */
+#services .svc-cards{counter-reset:svc;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,18px);column-gap:clamp(12px,1.4vw,18px);margin-top:34px}
+#services .svc-cards li{counter-increment:svc;border:0}
+#services .svc-cards a{position:relative;display:flex;flex-direction:column;height:100%;gap:0;padding:clamp(22px,2.2vw,30px);background:#fff;border:1px solid var(--line);border-bottom:3px solid var(--gold);box-shadow:0 16px 30px -26px rgba(7,20,38,.5);overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s}
+#services .svc-cards a::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(200,164,93,.14),transparent 55%);opacity:0;transition:opacity .4s}
+#services .svc-cards a::after{content:"0" counter(svc);position:absolute;right:16px;top:12px;font-family:var(--font-display);font-weight:800;font-size:2.3rem;line-height:1;color:transparent;-webkit-text-stroke:1.1px rgba(200,164,93,.5);transition:-webkit-text-stroke-color .3s}
+#services .svc-cards a:hover,#services .svc-cards a:focus-visible{transform:translateY(-8px);box-shadow:0 30px 52px -28px rgba(7,20,38,.6);border-color:var(--navy);border-bottom-color:var(--gold)}
+#services .svc-cards a:hover::before{opacity:1}
+#services .svc-cards a:hover::after{-webkit-text-stroke-color:var(--gold)}
+.svc-ico{position:relative;display:grid;place-items:center;width:52px;height:52px;padding:12px;margin-bottom:18px;color:var(--gold-ink);background:rgba(200,164,93,.12);border:1.5px solid rgba(200,164,93,.6);transition:background .3s,color .3s,transform .5s var(--ease)}
+.svc-ico svg{width:100%;height:100%}
+#services .svc-cards a:hover .svc-ico{background:var(--navy);color:var(--gold);border-color:var(--navy);transform:rotate(-6deg) scale(1.06)}
+#services .svc-cards h4{position:relative;margin:0 0 10px;font-size:1.1rem;line-height:1.28;padding-right:44px}
+#services .svc-cards p{position:relative;margin:0 0 22px;font-size:.95rem;line-height:1.6;color:var(--muted)}
+#services .svc-cards .arrow{position:relative;grid-row:auto;grid-column:auto;align-self:flex-start;margin-top:auto;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);transition:background .3s,transform .4s var(--ease)}
+#services .svc-cards a:hover .arrow{background:var(--gold);border-color:var(--gold);transform:translateX(6px)}
+#services .svc-cards a:hover .arrow svg{color:var(--navy-deep)}
+#services .svc-cards .tag{display:inline-block;margin:8px 0 0;vertical-align:0;background:rgba(200,164,93,.14);border-color:rgba(200,164,93,.5);color:var(--gold-ink)}
+/* last card (consultancy) becomes a full-width banner */
+#services .svc-cards li:last-child{grid-column:1 / -1}
+#services .svc-cards li:last-child a{display:grid;grid-template-columns:auto 1fr auto;column-gap:24px;align-items:center;background:linear-gradient(100deg,var(--navy-deep),#16335a);color:var(--on-navy);border-color:var(--navy-deep);border-bottom-color:var(--gold)}
+#services .svc-cards li:last-child a::after{display:none}
+#services .svc-cards li:last-child .svc-ico{margin:0;color:var(--gold);background:rgba(200,164,93,.1);grid-row:1 / span 2}
+#services .svc-cards li:last-child h4{color:var(--white);padding-right:0;margin:0;grid-column:2}
+#services .svc-cards li:last-child p{color:var(--on-navy);margin:0;grid-column:2}
+#services .svc-cards li:last-child .arrow{grid-column:3;grid-row:1 / span 2;align-self:center;margin:0}
+#services .svc-cards li:last-child a:hover .svc-ico{background:var(--gold);color:var(--navy-deep);border-color:var(--gold)}
+#services .svc-cards li:last-child .tag{color:var(--gold);background:rgba(200,164,93,.12)}
+/* staggered rise-in */
+.js #services .svc-cards.is-in li{animation:svcRise .7s var(--ease) backwards}
+.js #services .svc-cards.is-in li:nth-child(2){animation-delay:.07s}.js #services .svc-cards.is-in li:nth-child(3){animation-delay:.14s}.js #services .svc-cards.is-in li:nth-child(4){animation-delay:.21s}.js #services .svc-cards.is-in li:nth-child(5){animation-delay:.28s}.js #services .svc-cards.is-in li:nth-child(6){animation-delay:.35s}.js #services .svc-cards.is-in li:nth-child(7){animation-delay:.42s}
+@keyframes svcRise{from{opacity:0;transform:translateY(26px)}}
+@media (max-width:980px){#services .svc-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){#services .svc-cards{grid-template-columns:1fr}#services .svc-cards li:last-child a{grid-template-columns:auto 1fr;row-gap:12px}#services .svc-cards li:last-child .arrow{grid-column:1;grid-row:auto;justify-self:start}#services .svc-cards li:last-child .svc-ico{grid-row:auto}#services .svc-cards li:last-child h4,#services .svc-cards li:last-child p{grid-column:1 / -1}}
+@media (prefers-reduced-motion:reduce){#services .svc-cards a,.svc-ico,#services .svc-cards .arrow{transition:none}.js #services .svc-cards.is-in li{animation:none}}
+
+/* refinements */
+#services::after{content:"SERVICES";position:absolute;right:-1vw;top:clamp(30px,6vw,80px);font-family:var(--font-display);font-weight:800;font-size:clamp(5rem,15vw,13rem);line-height:1;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px rgba(200,164,93,.22);pointer-events:none;user-select:none;white-space:nowrap}
+#services .svc-cards a{background:linear-gradient(180deg,#fff,#fcfaf4)}
+/* "Explore" label that slides out next to the arrow on hover */
+#services .svc-cards .arrow{overflow:visible}
+#services .svc-cards .arrow::after{content:"Explore";position:absolute;left:54px;top:50%;transform:translate(-8px,-50%);font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink);opacity:0;white-space:nowrap;transition:opacity .3s,transform .4s var(--ease)}
+#services .svc-cards a:hover .arrow::after{opacity:1;transform:translate(0,-50%)}
+#services .svc-cards a:hover .arrow{transform:none}
+/* banner: readable arrow and tag spacing */
+#services .svc-cards li:last-child .arrow{border-color:var(--gold);background:rgba(200,164,93,.12)}
+#services .svc-cards li:last-child .arrow svg{color:var(--gold)}
+#services .svc-cards li:last-child a:hover .arrow{background:var(--gold)}
+#services .svc-cards li:last-child a:hover .arrow svg{color:var(--navy-deep)}
+#services .svc-cards li:last-child .arrow::after{display:none}
+#services .svc-cards li:last-child h4{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px}
+#services .svc-cards li:last-child .tag{margin:0}
+#services .svc-cards li:last-child a::before{background:radial-gradient(400px circle at 100% 50%,rgba(200,164,93,.22),transparent 70%);opacity:1}

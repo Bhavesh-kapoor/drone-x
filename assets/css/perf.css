@@ -1,0 +1,4 @@
+/* Pause animations in sections that are scrolled out of view (saves CPU/GPU, keeps scrolling smooth) */
+.is-off, .is-off *, .is-off *::before, .is-off *::after{animation-play-state:paused!important}
+/* promote constantly moving layers */
+.ab-nx__drone,.ab-next__drone,.flow__flyer,.sc-drone{will-change:transform}
