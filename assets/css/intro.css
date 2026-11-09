@@ -1,0 +1,37 @@
+/* Intro: "Beyond the drone. Into the building." */
+#intro{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff,#fff 60%,var(--paper))}
+#intro::before{content:"";position:absolute;left:-140px;top:-140px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(200,164,93,.2),transparent 70%);pointer-events:none}
+#intro .wrap{position:relative}
+.intro__left{position:sticky;top:calc(var(--header-h) + 28px)}
+.intro__eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:18px}
+.intro__eyebrow::before{content:"";width:36px;height:2px;background:var(--gold)}
+.intro__statement{font-size:clamp(2.2rem,4.4vw,3.7rem)!important;line-height:1.04!important}
+.intro__statement .intro__a{display:block;color:var(--navy)}
+.intro__statement em{display:block!important;position:relative;color:var(--gold-ink)!important;font-weight:700!important;width:max-content;max-width:100%}
+.intro__statement em::after{content:"";position:absolute;left:0;right:0;bottom:-.04em;height:.12em;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease) .6s}
+.reveal.is-in .intro__statement em::after{transform:scaleX(1)}
+/* drone-to-building scene */
+.intro__scene{display:block;width:100%;max-width:440px;margin-top:clamp(22px,3vw,36px);overflow:visible}
+.sc-win{fill:rgba(200,164,93,.18);stroke:rgba(11,31,58,.35);stroke-width:1;animation:scWin 3.2s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes scWin{0%,60%,100%{fill:rgba(200,164,93,.14)}75%{fill:#C8A45D}}
+.sc-path{animation:scDash 1.4s linear infinite}
+@keyframes scDash{to{stroke-dashoffset:-24}}
+.sc-drone{offset-path:path("M24 40C100 10 170 40 214 96");offset-rotate:0deg;animation:scFly 5.5s var(--ease) infinite}
+@keyframes scFly{0%{offset-distance:0%}70%,100%{offset-distance:100%}}
+.sc-rot{transform-box:fill-box;transform-origin:center;animation:scRot .16s linear infinite}
+@keyframes scRot{to{transform:scaleX(.25)}}
+.sc-ping{transform-box:fill-box;transform-origin:center;animation:scPing 5.5s ease-out infinite}
+@keyframes scPing{0%,68%{opacity:0;transform:scale(.4)}72%{opacity:1}100%{opacity:0;transform:scale(3.2)}}
+/* right column */
+#intro .lead{padding-left:22px;border-left:3px solid var(--gold);font-size:clamp(1.15rem,1.6vw,1.35rem);color:var(--navy)}
+#intro .disciplines{counter-reset:disc;display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:0;margin-top:clamp(26px,3vw,38px)}
+#intro .disciplines li{counter-increment:disc;position:relative;padding:16px 16px 16px 54px;background:#fff;border:1px solid var(--line);border-bottom:3px solid var(--gold);font-weight:600;font-size:.92rem;line-height:1.35;align-items:center;box-shadow:0 14px 28px -24px rgba(7,20,38,.5);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s,color .3s}
+#intro .disciplines li::before{content:"0" counter(disc);position:absolute;left:14px;top:50%;width:auto;height:auto;transform:translateY(-50%);background:none;font-family:var(--font-display);font-weight:800;font-size:1.25rem;color:transparent;-webkit-text-stroke:1px var(--gold-ink)}
+#intro .disciplines li:hover{transform:translateY(-5px);background:var(--navy);color:var(--white);box-shadow:0 22px 40px -22px rgba(7,20,38,.7)}
+#intro .disciplines li:hover::before{-webkit-text-stroke-color:var(--gold)}
+.js #intro .disciplines.is-in li,.js #intro .reveal.is-in .disciplines li{animation:introRise .7s var(--ease) backwards}
+.js #intro .reveal.is-in .disciplines li:nth-child(2){animation-delay:.07s}.js #intro .reveal.is-in .disciplines li:nth-child(3){animation-delay:.14s}.js #intro .reveal.is-in .disciplines li:nth-child(4){animation-delay:.21s}.js #intro .reveal.is-in .disciplines li:nth-child(5){animation-delay:.28s}.js #intro .reveal.is-in .disciplines li:nth-child(6){animation-delay:.35s}
+@keyframes introRise{from{opacity:0;transform:translateY(20px)}}
+@media (max-width:860px){.intro__left{position:static}.intro__scene{max-width:380px}}
+@media (max-width:480px){#intro .disciplines{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.sc-win,.sc-path,.sc-drone,.sc-rot,.sc-ping{animation:none}.sc-drone{offset-distance:100%}.intro__statement em::after{transition:none;transform:scaleX(1)}#intro .disciplines li{transition:none}.js #intro .reveal.is-in .disciplines li{animation:none}}

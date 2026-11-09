@@ -238,72 +238,6 @@
   .ab-tab__num{display:none}
 }
 @media (prefers-reduced-motion:reduce){.ab-tab,.ab-tab__icon{transition:none}.ab-panel{animation:none}}
-/* Next cue: right-aligned, horizontal flight */
-/* Next cue: capsule */
-.ab-next{--r:0deg;position:relative;display:flex;align-items:center;gap:clamp(12px,1.8vw,22px);width:max-content;max-width:100%;margin:clamp(36px,5vw,64px) 0 0 auto;padding:10px 10px 10px clamp(16px,2vw,24px);border-radius:999px;color:var(--navy);text-decoration:none;text-align:right;isolation:isolate;overflow:hidden;background:rgba(255,255,255,.7);transition:transform .25s ease-out,color .35s var(--ease),box-shadow .35s var(--ease)}
-.section--navy .ab-next,.section--deep .ab-next{color:var(--white);background:rgba(255,255,255,.06)}
-.ab-next::before{content:"";position:absolute;inset:-60%;z-index:-2;background:conic-gradient(from var(--r),transparent 0 62%,var(--gold) 80%,#F1DDA6 88%,transparent 100%);animation:abNxSpin 3.4s linear infinite}
-.ab-next::after{content:"";position:absolute;inset:2px;z-index:-1;border-radius:inherit;background:#fff;transition:background .4s var(--ease)}
-.section--navy .ab-next::after,.section--deep .ab-next::after{background:var(--navy-deep)}
-.ab-next:hover,.ab-next:focus-visible{color:var(--navy-deep);box-shadow:0 18px 40px -16px rgba(200,164,93,.7),0 0 0 6px rgba(200,164,93,.14)}
-.ab-next:hover::after,.ab-next:focus-visible::after{background:var(--gold)}
-.ab-next:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
-.ab-next__trail{position:relative;display:block;width:clamp(74px,10vw,120px);height:34px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent)}
-.ab-next__trail i{position:absolute;left:0;top:50%;width:100%;height:0;border-top:2px dashed var(--gold);opacity:.55;transform:translateY(-50%);animation:abNxDash .9s linear infinite;background:none}
-.ab-next__drone{position:absolute;left:0;top:50%;width:32px;height:32px;margin-top:-16px;font-style:normal;color:var(--gold-ink);animation:abNxFly 2.2s var(--ease) infinite}
-.section--navy .ab-next__drone,.section--deep .ab-next__drone{color:var(--gold)}
-.ab-next:hover .ab-next__drone{color:var(--navy-deep)}
-.ab-next__drone::before{content:"";position:absolute;right:100%;top:50%;width:46px;height:3px;margin-top:-1.5px;background:linear-gradient(270deg,var(--gold),transparent);border-radius:3px}
-.ab-next__drone svg{display:block;width:100%;height:100%;overflow:visible;transform:rotate(90deg)}
-.ab-next__drone .rot{transform-box:fill-box;transform-origin:center;animation:abNxProp .16s linear infinite}
-.ab-next__txt{display:flex;flex-direction:column;gap:3px;font-family:var(--font-display);text-transform:uppercase;white-space:nowrap}
-.ab-next__txt small{font-size:.62rem;letter-spacing:.24em;color:var(--gold-ink);transition:color .3s}
-.section--navy .ab-next__txt small,.section--deep .ab-next__txt small{color:var(--gold)}
-.ab-next:hover .ab-next__txt small{color:var(--navy-deep)}
-.ab-next__txt b{font-size:clamp(.82rem,1.4vw,1.04rem);font-weight:700;letter-spacing:.12em}
-.ab-next__go{position:relative;display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--navy-deep);animation:abNxGlow 2s ease-out infinite;transition:transform .35s var(--ease),background .3s,color .3s}
-.ab-next__go svg{width:24px;height:24px;animation:abNxNudge 1.3s var(--ease) infinite}
-.ab-next:hover .ab-next__go{background:var(--navy-deep);color:var(--gold);transform:scale(1.1) rotate(-8deg)}
-.ab-next.is-go .ab-next__drone{animation:abNxLaunch .5s cubic-bezier(.5,0,1,.6) forwards}
-.ab-next.is-go .ab-next__go{transform:scale(1.25);box-shadow:0 0 0 16px rgba(200,164,93,.3)}
-@property --r{syntax:"<angle>";initial-value:0deg;inherits:false}
-@keyframes abNxSpin{to{--r:360deg}}
-@keyframes abNxDash{to{background-position:0 0;transform:translate(-14px,-50%)}}
-@keyframes abNxFly{0%{transform:translateX(-50px);opacity:0}18%{opacity:1}75%{transform:translateX(calc(clamp(74px,10vw,120px) - 36px));opacity:1}100%{transform:translateX(calc(clamp(74px,10vw,120px) + 10px));opacity:0}}
-@keyframes abNxLaunch{to{transform:translateX(160px) scale(1.3);opacity:0}}
-@keyframes abNxProp{to{transform:scaleX(.25)}}
-@keyframes abNxGlow{0%{box-shadow:0 0 0 0 rgba(200,164,93,.6)}70%,100%{box-shadow:0 0 0 16px rgba(200,164,93,0)}}
-@keyframes abNxNudge{0%,100%{transform:translateX(-3px)}50%{transform:translateX(4px)}}
-@media (max-width:640px){.ab-next__trail{display:none}.ab-next{padding-left:18px}}
-@media (prefers-reduced-motion:reduce){.ab-next::before,.ab-next__trail i,.ab-next__drone,.ab-next__drone .rot,.ab-next__go,.ab-next__go svg{animation:none}.ab-next__drone{opacity:0}}
-/* Next cue: hovering drone + beam */
-.ab-nx{position:relative;display:flex;justify-content:flex-end;margin-top:clamp(28px,4vw,48px);padding-top:clamp(66px,8vw,92px)}
-.ab-nx .ab-next{margin:0}
-.js .ab-nx{opacity:0;transform:translateX(90px)}
-.js .ab-nx.is-in{opacity:1;transform:none;transition:opacity .5s ease-out,transform .9s cubic-bezier(.2,1.5,.4,1)}
-.ab-nx__drone{position:absolute;z-index:3;right:clamp(12px,3vw,40px);top:0;width:clamp(84px,9vw,112px);color:var(--gold-ink);pointer-events:none;animation:abNxBob 3s ease-in-out infinite;filter:drop-shadow(0 14px 12px rgba(7,20,38,.3))}
-.section--navy .ab-nx__drone,.section--deep .ab-nx__drone{color:var(--gold)}
-.ab-nx__drone svg{display:block;width:100%;height:auto;overflow:visible}
-.ab-nx__drone .bl{transform-box:fill-box;transform-origin:center;animation:abNxProp .12s linear infinite}
-.ab-nx__drone .eye{animation:abNxEye 1.2s ease-in-out infinite}
-.ab-nx__beam{position:absolute;left:50%;top:78%;width:150%;height:clamp(60px,7vw,90px);margin-left:-75%;background:linear-gradient(180deg,rgba(200,164,93,.55),rgba(200,164,93,0));clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);transform-origin:50% 0;animation:abNxSway 3s ease-in-out infinite;z-index:-1}
-.ab-nx:hover .ab-nx__drone{animation-duration:1.2s}
-.ab-nx.is-go .ab-nx__drone{animation:abNxZoom .6s cubic-bezier(.5,0,1,.6) forwards}
-.ab-nx:hover .ab-nx__beam{background:linear-gradient(180deg,rgba(241,221,166,.85),rgba(200,164,93,0))}
-@keyframes abNxBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
-@keyframes abNxSway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
-@keyframes abNxEye{0%,100%{opacity:1}50%{opacity:.2}}
-@keyframes abNxZoom{to{transform:translateY(160px) scale(1.5);opacity:0}}
-/* bigger, bolder capsule */
-.ab-next{padding:12px 12px 12px clamp(18px,2.4vw,30px);box-shadow:0 20px 44px -22px rgba(7,20,38,.55)}
-.ab-next__go{width:62px;height:62px}
-.ab-next__go svg{width:28px;height:28px}
-.ab-next__txt b{font-size:clamp(.9rem,1.6vw,1.2rem)}
-.ab-next__txt b{background:linear-gradient(100deg,currentColor 38%,var(--gold) 50%,currentColor 62%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:abNxShine 2.8s linear infinite}
-.ab-next:hover .ab-next__txt b{-webkit-text-fill-color:var(--navy-deep);background:none;animation:none}
-@keyframes abNxShine{to{background-position:-250% 0}}
-@media (max-width:640px){.ab-nx__drone{width:72px;right:8px}.ab-nx{padding-top:66px}}
-@media (prefers-reduced-motion:reduce){.ab-nx__drone,.ab-nx__beam,.ab-nx__drone .bl,.ab-nx__drone .eye,.ab-next__txt b{animation:none}.js .ab-nx{opacity:1;transform:none;transition:none}}
 /* About page enhancements */
 .ab-blueprint{position:relative;overflow:hidden}
 .ab-blueprint::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,93,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,93,.07) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 80%);pointer-events:none}
@@ -367,7 +301,11 @@
 }
 @media (prefers-reduced-motion:reduce){.ab-pillar,.ab-pillar::before,.ab-pillar__icon,.ab-vm__card{transition:none}.ab-vm__link b{animation:none}}
 </style>
+<link rel="stylesheet" href="/assets/css/next-cue.css">
+<link rel="stylesheet" href="/assets/css/perf.css">
 <script src="/assets/js/config.js" defer></script>
+<script src="/assets/js/next-cue.js" defer></script>
+<script src="/assets/js/perf.js" defer></script>
 <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
@@ -376,7 +314,7 @@
   <div class="wrap site-header__inner">
     <a class="brand" href="/" aria-label="DroneX Facility Services, home"><svg class="brand__mark" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="#C8A45D" stroke-width="2"/><path d="M11.7 1v32M22.3 1v32M1 17h32" stroke="#C8A45D" stroke-width="1" opacity=".55"/><path d="M22.3 6.5 27.5 11.7 22.3 17 17 11.7Z" fill="#C8A45D"/></svg><span class="brand__text"><span class="brand__name">DroneX</span><span class="brand__sub">FACILITY SERVICES</span></span></a>
     <nav class="primary-nav" aria-label="Main">
-      <ul><li><a class="nav-link" href="/">Home</a></li><li><a class="nav-link" href="/about-dronex/" aria-current="page">About Us</a></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-services">Services<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-services"><li><a href="/services/facade-inspection-survey/">Façade Inspection &amp; Survey</a></li><li><a href="/services/industrial-cleaning/">Industrial Cleaning</a></li><li><a href="/services/building-exterior-maintenance-audit/">Building Exterior Maintenance Audit</a></li><li><a href="/services/residential-property-management/">Residential Property Management</a></li><li><a href="/services/workplace-solutions/">Commercial &amp; Workplace Solutions</a></li><li><a href="/services/retail-mall-management/">Retail &amp; Mall Management</a></li><li><a href="/services/transition-mobilisation/">Transition &amp; Mobilisation</a></li><li><a href="/consultancy/fire-life-safety/">Fire &amp; Life Safety Consultancy</a></li></ul></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-drone">Drone Solutions<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-drone"><li><a href="/drone-solutions/drone-facade-cleaning/">Cleaning / Clearing via Drone</a></li><li><a href="/drone-solutions/drone-inspection-surveys/">Drone Inspection &amp; Visual Surveys</a></li><li><a href="/drone-solutions/futuristic-drone-applications/">Futuristic Drone Applications</a></li><li><a href="/why-dronex/">Why DroneX</a></li></ul></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-industries"><li><a href="/#industry-commercial-offices">Commercial offices</a></li><li><a href="/#industry-residential">Residential communities</a></li><li><a href="/#industry-mixed-use">Mixed-use developments</a></li><li><a href="/#industry-retail">Retail &amp; malls</a></li><li><a href="/#industry-campuses">Corporate campuses</a></li><li><a href="/industries/">All industries</a></li></ul></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-projects">Projects & Insights<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-projects"><li><a href="/projects/">Projects &amp; Case Studies</a></li><li><a href="/insights/">Insights</a></li><li><a href="/safety-quality-compliance/">Safety, Quality &amp; Compliance</a></li><li><a href="/faqs/">FAQs</a></li></ul></li><li><a class="nav-link" href="/contact/">Contact Us</a></li></ul>
+      <ul><li><a class="nav-link" href="/">Home</a></li><li class="has-dropdown"><button class="nav-trigger is-current" type="button" aria-expanded="false" aria-controls="dd-about">About Us<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-about"><li><a href="/about-dronex/">About DroneX</a></li><li><a href="/about-dronex/#sec-who">Who we are</a></li><li><a href="/about-dronex/#sec-vm">Vision &amp; Mission</a></li><li><a href="/about-dronex/#sec-philo">Operating Philosophy</a></li><li><a href="/about-dronex/#sec-team">Our Management Team</a></li></ul></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-services">Services<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-services"><li><a href="/services/facade-inspection-survey/">Façade Inspection &amp; Survey</a></li><li><a href="/services/industrial-cleaning/">Industrial Cleaning</a></li><li><a href="/services/building-exterior-maintenance-audit/">Building Exterior Maintenance Audit</a></li><li><a href="/services/residential-property-management/">Residential Property Management</a></li><li><a href="/services/workplace-solutions/">Commercial &amp; Workplace Solutions</a></li><li><a href="/services/retail-mall-management/">Retail &amp; Mall Management</a></li><li><a href="/services/transition-mobilisation/">Transition &amp; Mobilisation</a></li><li><a href="/consultancy/fire-life-safety/">Fire &amp; Life Safety Consultancy</a></li></ul></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-drone">Drone Solutions<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-drone"><li><a href="/drone-solutions/drone-facade-cleaning/">Cleaning / Clearing via Drone</a></li><li><a href="/drone-solutions/drone-inspection-surveys/">Drone Inspection &amp; Visual Surveys</a></li><li><a href="/drone-solutions/futuristic-drone-applications/">Futuristic Drone Applications</a></li><li><a href="/why-dronex/">Why DroneX</a></li></ul></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-industries"><li><a href="/#industry-commercial-offices">Commercial offices</a></li><li><a href="/#industry-residential">Residential communities</a></li><li><a href="/#industry-mixed-use">Mixed-use developments</a></li><li><a href="/#industry-retail">Retail &amp; malls</a></li><li><a href="/#industry-campuses">Corporate campuses</a></li><li><a href="/industries/">All industries</a></li></ul></li><li class="has-dropdown"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-projects">Projects & Insights<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="dropdown" id="dd-projects"><li><a href="/projects/">Projects &amp; Case Studies</a></li><li><a href="/insights/">Insights</a></li><li><a href="/safety-quality-compliance/">Safety, Quality &amp; Compliance</a></li><li><a href="/faqs/">FAQs</a></li></ul></li><li><a class="nav-link" href="/contact/">Contact Us</a></li></ul>
     </nav>
     <div class="header-cta">
       <a class="btn btn--sm" href="/contact/"><span class="label-long">Request a Site Assessment</span><span class="label-short">Site assessment</span></a>
@@ -386,7 +324,7 @@
 </header>
 <div class="mobile-nav" id="mobile-nav">
   <nav class="mobile-nav__scroll" aria-label="Mobile">
-    <ul><li class="mobile-nav__item"><a class="mobile-nav__link" href="/">Home</a></li><li class="mobile-nav__item"><a class="mobile-nav__link" href="/about-dronex/" aria-current="page">About Us</a></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-services">Services<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-services" hidden><li><a href="/services/facade-inspection-survey/">Façade Inspection &amp; Survey</a></li><li><a href="/services/industrial-cleaning/">Industrial Cleaning</a></li><li><a href="/services/building-exterior-maintenance-audit/">Building Exterior Maintenance Audit</a></li><li><a href="/services/residential-property-management/">Residential Property Management</a></li><li><a href="/services/workplace-solutions/">Commercial &amp; Workplace Solutions</a></li><li><a href="/services/retail-mall-management/">Retail &amp; Mall Management</a></li><li><a href="/services/transition-mobilisation/">Transition &amp; Mobilisation</a></li><li><a href="/consultancy/fire-life-safety/">Fire &amp; Life Safety Consultancy</a></li></ul></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-drone">Drone Solutions<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-drone" hidden><li><a href="/drone-solutions/drone-facade-cleaning/">Cleaning / Clearing via Drone</a></li><li><a href="/drone-solutions/drone-inspection-surveys/">Drone Inspection &amp; Visual Surveys</a></li><li><a href="/drone-solutions/futuristic-drone-applications/">Futuristic Drone Applications</a></li><li><a href="/why-dronex/">Why DroneX</a></li></ul></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-industries">Industries<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-industries" hidden><li><a href="/#industry-commercial-offices">Commercial offices</a></li><li><a href="/#industry-residential">Residential communities</a></li><li><a href="/#industry-mixed-use">Mixed-use developments</a></li><li><a href="/#industry-retail">Retail &amp; malls</a></li><li><a href="/#industry-campuses">Corporate campuses</a></li><li><a href="/industries/">All industries</a></li></ul></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-projects">Projects & Insights<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-projects" hidden><li><a href="/projects/">Projects &amp; Case Studies</a></li><li><a href="/insights/">Insights</a></li><li><a href="/safety-quality-compliance/">Safety, Quality &amp; Compliance</a></li><li><a href="/faqs/">FAQs</a></li></ul></li><li class="mobile-nav__item"><a class="mobile-nav__link" href="/contact/">Contact Us</a></li></ul>
+    <ul><li class="mobile-nav__item"><a class="mobile-nav__link" href="/">Home</a></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-about">About Us<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-about" hidden><li><a href="/about-dronex/">About DroneX</a></li><li><a href="/about-dronex/#sec-who">Who we are</a></li><li><a href="/about-dronex/#sec-vm">Vision &amp; Mission</a></li><li><a href="/about-dronex/#sec-philo">Operating Philosophy</a></li><li><a href="/about-dronex/#sec-team">Our Management Team</a></li></ul></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-services">Services<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-services" hidden><li><a href="/services/facade-inspection-survey/">Façade Inspection &amp; Survey</a></li><li><a href="/services/industrial-cleaning/">Industrial Cleaning</a></li><li><a href="/services/building-exterior-maintenance-audit/">Building Exterior Maintenance Audit</a></li><li><a href="/services/residential-property-management/">Residential Property Management</a></li><li><a href="/services/workplace-solutions/">Commercial &amp; Workplace Solutions</a></li><li><a href="/services/retail-mall-management/">Retail &amp; Mall Management</a></li><li><a href="/services/transition-mobilisation/">Transition &amp; Mobilisation</a></li><li><a href="/consultancy/fire-life-safety/">Fire &amp; Life Safety Consultancy</a></li></ul></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-drone">Drone Solutions<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-drone" hidden><li><a href="/drone-solutions/drone-facade-cleaning/">Cleaning / Clearing via Drone</a></li><li><a href="/drone-solutions/drone-inspection-surveys/">Drone Inspection &amp; Visual Surveys</a></li><li><a href="/drone-solutions/futuristic-drone-applications/">Futuristic Drone Applications</a></li><li><a href="/why-dronex/">Why DroneX</a></li></ul></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-industries">Industries<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-industries" hidden><li><a href="/#industry-commercial-offices">Commercial offices</a></li><li><a href="/#industry-residential">Residential communities</a></li><li><a href="/#industry-mixed-use">Mixed-use developments</a></li><li><a href="/#industry-retail">Retail &amp; malls</a></li><li><a href="/#industry-campuses">Corporate campuses</a></li><li><a href="/industries/">All industries</a></li></ul></li><li class="mobile-nav__item"><button class="mobile-nav__trigger" type="button" aria-expanded="false" aria-controls="m-dd-projects">Projects & Insights<svg class="chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8"/></svg></button><ul class="mobile-nav__sub" id="m-dd-projects" hidden><li><a href="/projects/">Projects &amp; Case Studies</a></li><li><a href="/insights/">Insights</a></li><li><a href="/safety-quality-compliance/">Safety, Quality &amp; Compliance</a></li><li><a href="/faqs/">FAQs</a></li></ul></li><li class="mobile-nav__item"><a class="mobile-nav__link" href="/contact/">Contact Us</a></li></ul>
   </nav>
   <div class="mobile-nav__cta"><a class="btn" href="/contact/">Request a Site Assessment</a></div>
 </div>
@@ -481,7 +419,7 @@
   <div class="wrap">
     <div class="ab-philo-head reveal">
       <span class="ab-eyebrow">Our operating philosophy</span>
-      <h2 id="philo-title">Three Pillars. One Integrated Approach.</h2>
+      <h2 id="philo-title">Three Pillars.<br><span style="color:var(--gold)">One Integrated Approach.</span></h2>
       <p>We bring together three complementary areas of expertise to create a differentiated service delivery model.</p>
     </div>
     <div class="ab-temple reveal">
@@ -599,28 +537,6 @@ document.querySelectorAll('.ab-pillar').forEach(function(el){el.addEventListener
 </script>
 <script>
 (function(){
-  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  document.querySelectorAll('a.ab-next,a.ab-hero__scroll').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var id=(a.getAttribute('href')||'').slice(1),t=id&&document.getElementById(id);
-      if(!t)return;
-      e.preventDefault();
-      var go=function(){
-        var hdr=document.querySelector('.site-header'),off=hdr?hdr.getBoundingClientRect().height:0;
-        var y=t.getBoundingClientRect().top+(window.scrollY||window.pageYOffset)-off+1;
-        window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'});
-        try{history.replaceState(null,'','#'+id)}catch(_){}
-        t.setAttribute('tabindex','-1');
-      };
-      if(reduce){go();return}
-      var w=a.closest('.ab-nx')||a;w.classList.add('is-go');a.classList.add('is-go');
-      setTimeout(function(){go();setTimeout(function(){w.classList.remove('is-go');a.classList.remove('is-go')},900)},260);
-    });
-  });
-})();
-</script>
-<script>
-(function(){
   var m=document.querySelector('.ab-who__media'),f=m&&m.querySelector('.frame');
   if(!f||window.matchMedia('(prefers-reduced-motion:reduce)').matches||!window.matchMedia('(hover:hover)').matches)return;
   m.addEventListener('pointermove',function(e){var r=m.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;f.style.transform='perspective(900px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg)'});
@@ -642,23 +558,6 @@ document.querySelectorAll('.ab-pillar').forEach(function(el){el.addEventListener
       if(n!==null){e.preventDefault();sel(n,true)}
     });
   });
-})();
-</script>
-<script>
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches||!window.matchMedia('(hover:hover)').matches)return;
-  document.querySelectorAll('a.ab-next').forEach(function(a){
-    a.addEventListener('pointermove',function(e){var r=a.getBoundingClientRect();a.style.transform='translate('+((e.clientX-r.left-r.width/2)*.08)+'px,'+((e.clientY-r.top-r.height/2)*.22)+'px)'});
-    a.addEventListener('pointerleave',function(){a.style.transform=''});
-  });
-})();
-</script>
-<script>
-(function(){
-  var els=document.querySelectorAll('.ab-nx');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('is-in')});return}
-  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('is-in');io.unobserve(x.target)}})},{threshold:.35});
-  els.forEach(function(e){io.observe(e)});
 })();
 </script>
 </body>

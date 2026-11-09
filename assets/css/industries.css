@@ -1,0 +1,56 @@
+/* Industries we serve (home) + background rhythm for the home page
+   Sequence: hero dark > intro light > DaaS dark > services light > why dark >
+             process light > industries dark > safety light > projects dark > CTA light > footer dark */
+#industries{position:relative;overflow:hidden;background:radial-gradient(800px 480px at 100% 0%,rgba(200,164,93,.16),transparent 62%),var(--navy-deep)}
+#industries::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,93,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,93,.06) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 80%);mask-image:linear-gradient(90deg,#000,transparent 80%);pointer-events:none}
+#industries .wrap{position:relative}
+.ind__eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.ind__eyebrow::before{content:"";width:36px;height:2px;background:var(--gold)}
+#industries .heading h2{font-size:clamp(2rem,4vw,3.2rem)}
+#industries .industries{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:stretch}
+/* photo with gold offset frame + viewfinder corners */
+#industries .industries__media{min-height:560px;margin:0 22px 22px 0!important;overflow:visible}
+#industries .industries__media::before{content:"";position:absolute;inset:22px -22px -22px 22px;border:2px solid var(--gold);z-index:0}
+#industries .industries__media picture{position:absolute;inset:0;z-index:1;overflow:hidden;box-shadow:0 36px 70px -30px rgba(0,0,0,.8)}
+#industries .industries__media picture::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,20,38,.05) 40%,rgba(7,20,38,.8))}
+#industries .industries__media img{transition:transform 1.4s var(--ease)}
+#industries .industries__media:hover img{transform:scale(1.06)}
+.ind-frame{position:absolute;inset:16px;z-index:3;pointer-events:none;
+  background:
+   linear-gradient(var(--gold),var(--gold)) top left/26px 2px no-repeat,linear-gradient(var(--gold),var(--gold)) top left/2px 26px no-repeat,
+   linear-gradient(var(--gold),var(--gold)) top right/26px 2px no-repeat,linear-gradient(var(--gold),var(--gold)) top right/2px 26px no-repeat,
+   linear-gradient(var(--gold),var(--gold)) bottom left/26px 2px no-repeat,linear-gradient(var(--gold),var(--gold)) bottom left/2px 26px no-repeat,
+   linear-gradient(var(--gold),var(--gold)) bottom right/26px 2px no-repeat,linear-gradient(var(--gold),var(--gold)) bottom right/2px 26px no-repeat}
+#industries .industries__media figcaption{z-index:3;left:28px;right:28px;bottom:28px;padding:16px 20px;background:rgba(7,20,38,.92);border-left:3px solid var(--gold);font-size:1rem;line-height:1.4}
+/* industry cards */
+#industries .industry-list{display:grid;gap:12px;border-top:0;counter-reset:ind}
+#industries .industry-list li{counter-increment:ind;position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:center;padding:18px clamp(16px,2vw,24px) 18px;border:1px solid var(--line-navy);border-left:3px solid rgba(200,164,93,.5);background:linear-gradient(100deg,rgba(255,255,255,.07),rgba(255,255,255,.015));overflow:hidden;transition:transform .4s var(--ease),border-color .3s,background .3s,box-shadow .4s var(--ease)}
+#industries .industry-list li::after{content:"0" counter(ind);position:absolute;right:16px;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-weight:800;font-size:2.6rem;line-height:1;color:transparent;-webkit-text-stroke:1.1px rgba(200,164,93,.3);transition:-webkit-text-stroke-color .3s}
+#industries .industry-list li:hover,#industries .industry-list li:target{transform:translateX(10px);border-left-color:var(--gold);border-color:rgba(200,164,93,.6);background:linear-gradient(100deg,rgba(200,164,93,.2),rgba(255,255,255,.03));box-shadow:0 24px 44px -28px rgba(0,0,0,.85)}
+#industries .industry-list li:hover::after{-webkit-text-stroke-color:var(--gold)}
+.ind-ico{grid-row:1 / span 2;display:grid;place-items:center;width:54px;height:54px;padding:13px;color:var(--gold);border:1.5px solid rgba(200,164,93,.6);background:rgba(200,164,93,.08);transition:background .3s,color .3s,transform .5s var(--ease)}
+.ind-ico svg{width:100%;height:100%}
+#industries .industry-list li:hover .ind-ico{background:var(--gold);color:var(--navy-deep);transform:rotate(-6deg) scale(1.06)}
+#industries .industry-list h3{margin:0 0 4px;font-size:1.1rem;color:var(--white);padding-right:56px}
+#industries .industry-list p{margin:0;color:var(--on-navy);opacity:.88;font-size:.95rem;padding-right:56px}
+.js #industries .industry-list.is-in li{animation:indRise .7s var(--ease) backwards}
+.js #industries .industry-list.is-in li:nth-child(2){animation-delay:.08s}.js #industries .industry-list.is-in li:nth-child(3){animation-delay:.16s}.js #industries .industry-list.is-in li:nth-child(4){animation-delay:.24s}.js #industries .industry-list.is-in li:nth-child(5){animation-delay:.32s}
+@keyframes indRise{from{opacity:0;transform:translateX(34px)}}
+@media (max-width:900px){#industries .industries{grid-template-columns:1fr}#industries .industries__media{min-height:320px}}
+@media (max-width:560px){#industries .industry-list li{grid-template-columns:1fr}.ind-ico{grid-row:auto;margin-bottom:10px}#industries .industry-list h3,#industries .industry-list p{padding-right:0}#industries .industry-list li::after{display:none}}
+@media (prefers-reduced-motion:reduce){#industries .industry-list li,.ind-ico,#industries .industries__media img{transition:none}.js #industries .industry-list.is-in li{animation:none}}
+
+/* Projects: dark section, white card stays readable */
+#projects{background:radial-gradient(800px 460px at 0% 100%,rgba(200,164,93,.14),transparent 62%),var(--navy)}
+#projects .pending{box-shadow:0 40px 80px -40px rgba(0,0,0,.8);border-top:4px solid var(--gold)}
+#projects .pending .muted{color:var(--muted)}
+#projects .pending__status{color:var(--gold-ink)}
+
+/* CTA band: light, so the page ends light > dark footer */
+#get-in-touch{background:linear-gradient(180deg,#fff,var(--paper));color:var(--navy);border-top:4px solid var(--gold)}
+#get-in-touch::before{background-image:linear-gradient(90deg,rgba(11,31,58,.07) 1px,transparent 1px)}
+#get-in-touch h2{color:var(--navy)}
+#get-in-touch p{color:var(--ink)}
+
+/* Services: a light tint (the theme turns .section--paper dark, which broke the rhythm) */
+.section--tint{background:linear-gradient(180deg,var(--paper),#fff 85%)}
