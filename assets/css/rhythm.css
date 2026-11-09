@@ -1,0 +1,25 @@
+/* Home background rhythm — hero dark | our approach LIGHT | why DARK | industries LIGHT | safety DARK | how we work LIGHT | services light | daas dark | CTA light | footer dark */
+
+/* ---- industries: light ---- */
+#industries{background:radial-gradient(800px 480px at 100% 0%,rgba(200,164,93,.16),transparent 62%),linear-gradient(180deg,#fff,var(--paper));color:var(--ink)}
+#industries::before{background-image:linear-gradient(rgba(11,31,58,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(11,31,58,.05) 1px,transparent 1px)}
+.ind__eyebrow{color:var(--gold-ink)}
+#industries .industries__media picture{box-shadow:0 30px 54px -30px rgba(7,20,38,.5)}
+#industries .industry-list li{background:#fff;border-color:var(--line);border-left-color:rgba(200,164,93,.7);box-shadow:0 14px 28px -24px rgba(7,20,38,.4)}
+#industries .industry-list li::after{-webkit-text-stroke-color:rgba(138,106,43,.35)}
+#industries .industry-list li:hover,#industries .industry-list li:target{background:linear-gradient(100deg,rgba(200,164,93,.16),#fff);border-color:var(--gold);box-shadow:0 24px 40px -26px rgba(7,20,38,.5)}
+.ind-ico{color:var(--gold-ink);background:rgba(200,164,93,.12)}
+#industries .industry-list h3{color:var(--navy)}
+#industries .industry-list p{color:var(--muted);opacity:1}
+
+/* ---- safety: dark ---- */
+#safety{background:radial-gradient(800px 460px at 100% 0%,rgba(200,164,93,.16),transparent 62%),var(--navy-deep);color:var(--on-navy)}
+#safety::before{display:none}
+.saf__eyebrow{color:var(--gold)}
+#safety .lead{color:var(--on-navy)}
+#safety p{color:var(--on-navy)}
+#safety .saf-list li>div{background:rgba(255,255,255,.05);border-color:var(--line-navy);border-top-color:var(--gold);color:var(--on-navy);box-shadow:none}
+#safety .saf-list li:hover>div{background:rgba(200,164,93,.12);border-color:rgba(200,164,93,.6);box-shadow:0 26px 44px -24px rgba(0,0,0,.8)}
+#safety .saf-list li>div::after{-webkit-text-stroke-color:rgba(200,164,93,.5)}
+#safety .saf-list strong{color:var(--white)}
+.saf-ico{box-shadow:0 0 0 5px var(--navy-deep)}

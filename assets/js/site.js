@@ -365,3 +365,19 @@
   var y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
 })();
+
+/* Site-wide back-to-top button (skipped where a page ships its own) */
+(function(){
+  if(document.querySelector('.ab-top,.to-top'))return;
+  var b=document.createElement('button');
+  b.className='to-top';
+  b.type='button';b.setAttribute('aria-label','Back to top');
+  b.innerHTML='<svg class="to-top__ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="to-top__track" cx="24" cy="24" r="22"/><circle class="to-top__bar" cx="24" cy="24" r="22"/></svg><svg class="to-top__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  var bar=b.querySelector('.to-top__bar'),C=2*Math.PI*22;bar.style.strokeDasharray=C;
+  document.body.appendChild(b);
+  var on=false,t=false;
+  function upd(){t=false;var max=document.documentElement.scrollHeight-window.innerHeight;bar.style.strokeDashoffset=C*(1-(max>0?Math.min(1,window.scrollY/max):0));var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('is-on',s)}}
+  window.addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(upd)}},{passive:true});
+  b.addEventListener('click',function(){var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'})});
+  upd();
+})();

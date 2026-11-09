@@ -109,3 +109,16 @@
   window.addEventListener('hashchange',show);
   window.addEventListener('load',function(){setTimeout(show,150)});
 })();
+
+/* Header Services menu: #phase-1 / #phase-2 -> filter + scroll to the services section */
+(function(){
+  function go(){
+    var m=/^#phase-([12])$/.exec(location.hash);if(!m)return;
+    var root=document.querySelector('[data-ds]');if(!root)return;
+    var b=root.querySelector('.ds-filter [data-f="'+m[1]+'"]');if(b)b.click();
+    setTimeout(function(){var sec=document.getElementById('services');if(!sec)return;var h=document.querySelector('.site-header');
+      scrollTo({top:Math.max(0,sec.getBoundingClientRect().top+scrollY-(h?h.offsetHeight:0)+2),behavior:'smooth'})},80);
+  }
+  window.addEventListener('hashchange',go);
+  window.addEventListener('load',function(){setTimeout(go,200)});
+})();
